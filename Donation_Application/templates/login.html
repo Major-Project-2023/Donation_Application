@@ -1,6 +1,6 @@
 {% extends "navbar.html" %}
 {% block content %}
-<form>
+<form action="" method='get'>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -9,7 +9,7 @@
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
-  <button type="submit" class="btn btn-primary">Login</button>
-  <button type="submit" class="btn btn-primary">Forgot Password</button>
+  <input type="submit" class="btn btn-primary" value='login'>
+  {% comment %} <button type="submit" class="btn btn-primary">Forgot Password</button> {% endcomment %}
 </form>
 {% endblock content %}

@@ -11,4 +11,5 @@ def signup(request):
     return render(request, "signup.html", {'navbar':'signup'})
 
 def login(request):
+    print(request.GET)
     return render(request, 'login.html', {'navbar':'login'})

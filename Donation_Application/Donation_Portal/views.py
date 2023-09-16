@@ -6,3 +6,9 @@ def home(request):
 
 def portal(request):
     return render(request, 'paymentportal.html')
+
+def signup(request):
+    return render(request, "signup.html")
+
+def login(request):
+    return render(request, 'login.html')

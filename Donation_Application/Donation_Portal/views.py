@@ -9,7 +9,9 @@ def portal(request):
 
 def signup(request):
     if request.method == 'POST':
-        print(request.POST.get('email'),"\n",request.POST.get('password'))
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        print(f"Email: {email} Password: {password}")
     return render(request, "signup.html", {'navbar':'signup'})
 
 def login(request):

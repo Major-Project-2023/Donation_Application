@@ -38,7 +38,7 @@
           {{request.user.username|capfirst}}
         </button>
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
           <a class="dropdown-item" href="#">Transactions</a>
           <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
         </div>

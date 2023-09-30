@@ -15,9 +15,11 @@ urlpatterns = [
 
     path('signup/',views.SignupView.as_view(),name='signup'),
     
+    path('profile/', views.ProfileView.as_view(), name='profile'),
+
     path('logout/',auth_views.LogoutView.as_view(next_page='login'),name='logout'),
 
-# 
-path('accounts/profile/', views.home,name='home'),
+# added to resolve unexpected redirect to this path after login
+    path('accounts/profile/', views.home,name='home'),
 
 ]

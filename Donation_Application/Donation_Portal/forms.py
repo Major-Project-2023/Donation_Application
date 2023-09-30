@@ -15,6 +15,19 @@ class SignupForm(UserCreationForm):
         labels = {'email':'Email'}
         widgets = {'username':forms.TextInput(attrs={'class':'form-control'})}
 
+class CustomerProfileForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['user','phone','address','country','ac_number', 'ifsc_code']
+        widgets = {
+        'user':forms.TextInput(attrs={'class':'form-control'}),
+        'phone':forms.NumberInput(attrs={'class':'form-control'}),
+        'address':forms.TextInput(attrs={'class':'form-control'}),
+        'country':forms.TextInput(attrs={'class':'form-control'}),
+        'ac_number':forms.NumberInput(attrs={'class':'form-control'}),
+        'ifsc_code':forms.TextInput(attrs={'class':'form-control'})}
+
+
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True,'class':'form-control'}))
     password = forms.CharField(label=_("Password"),strip=False,widget=forms.PasswordInput(attrs={'autocomplete':'current-password','class':'form-control'}))

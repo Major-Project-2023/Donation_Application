@@ -32,33 +32,24 @@
     <li class="nav-item active"><a class="nav-link text-secondary" href="/">Home</a></li>
     <li class="nav-item active"><a class="nav-link text-secondary" href="/portal">Portal</a></li>
   </ul>
-  <ul class="navbar-nav ml-auto mr-auto">
-    <li class="nav-item active"><a class="nav-link text-success" href="{% url 'login' %}">Login</a></li>
-    <li class="nav-item active"><a class="nav-link text-success" href="/signup">Signup</a></li>
-  </ul>
-  <!-- this is Change -->
-  <ul>
+  <ul class="navbar-nav mr-auto ml-auto">
     {% if request.user.is_authenticated %}
     <li class="nav-item dropdown mx-2">
-       <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+       <a class="nav-link text-secondary" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
          {{request.user.username|capfirst}}
        </a>
        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-         <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-         <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
-         <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
-         <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-       </ul>
-     </li>
-     <li class="nav-item mx-2">
-      <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">4</span> Cart </a>
-     </li>
+        <li><h2><a class="dropdown-item" href="#">Profile</a></h2></li>
+        <li><h2><a class="dropdown-item" href="#">Transactions</a></h2></li>
+        <li><h2><a class="dropdown-item" href="#">Logout</a></h2></li>       
+  </ul>
+  <ul class="navbar-nav mr-auto ml-auto">
      {% else %}
-     <li class="nav-item mx-2">
-      <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+     <li class="nav-item dropdown mx-2">
+      <a href="{% url 'login' %}" class="nav-link text-secondary">Login</a>
      </li>
      <li class="nav-item mx-2">
-      <a href="{% url 'customerregistration' %}" class="nav-link text-white">Registration</a>
+      <a href="{% url 'signup' %}" class="nav-link text-secondary">Signup</a>
      </li>
      {% endif %}
   </ul>

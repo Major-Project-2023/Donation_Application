@@ -6,3 +6,4 @@ class userSignup(models.Model):
     password = models.CharField(max_length=20)
     phone = models.IntegerField()
     country = models.CharField(max_length=20)
+ 

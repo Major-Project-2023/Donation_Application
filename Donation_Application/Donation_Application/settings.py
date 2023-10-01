@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-ey(tct*z)t@ga!1fs!sqr$89^c)y4b_%uc$k40a3en$gqz&@yb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+# Doing this allows us to be able to make requests from any host ip
+# fro phone etc
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

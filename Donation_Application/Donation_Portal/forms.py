@@ -18,10 +18,9 @@ class SignupForm(UserCreationForm):
 class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['user','phone','address','country','ac_number', 'ifsc_code']
-        widgets = {
-        'user':forms.TextInput(attrs={'class':'form-control'}),
-        'phone':forms.NumberInput(attrs={'class':'form-control'}),
+        # fields = '__all__'
+        fields = ['phone','address','country','ac_number', 'ifsc_code']
+        widgets = {'phone':forms.NumberInput(attrs={'class':'form-control'}),
         'address':forms.TextInput(attrs={'class':'form-control'}),
         'country':forms.TextInput(attrs={'class':'form-control'}),
         'ac_number':forms.NumberInput(attrs={'class':'form-control'}),

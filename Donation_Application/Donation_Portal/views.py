@@ -16,8 +16,6 @@ def home(request):
 def portal(request):
     return render(request, 'paymentportal.html', {'navbar':'portal'})
 
-# def signup(request):
-#     return render(request, "signup.html", {'navbar':'signup'})
 class SignupView(View):
     def get(self,request):
         form = SignupForm()
@@ -47,4 +45,7 @@ class ProfileView(View):
             reg = Customer(user=user,phone=phone,address=address,country=country,ac_number=ac_number,ifsc_code=ifsc_code)
             reg.save()
             messages.success(request,'Congratulations!! ProfileUpdated Successfully')
-        return render(request,'profile.html',{'form':form,'active':'btn-primary'})
+            return render(request,'profile.html',{'form':form,'active':'btn-primary'})
+        else:
+            messages.MessageFailure(request,'Oh! No! ProfileUpdate Was Un-Successful')
+            return render(request,'profile.html',{'form':form,'active':'btn-primary'})

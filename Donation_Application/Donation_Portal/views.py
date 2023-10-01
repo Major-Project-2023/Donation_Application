@@ -49,3 +49,5 @@ class ProfileView(View):
         else:
             messages.MessageFailure(request,'Oh! No! ProfileUpdate Was Un-Successful')
             return render(request,'profile.html',{'form':form,'active':'btn-primary'})
+    def update():
+        pass

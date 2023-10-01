@@ -2,27 +2,33 @@
 {% load static %}
 {% block title %}Profile{% endblock title %}
 {% block content %}
-
-
-<div>
-  <div>
-   <form action="" method="post">
+<div class="d-flex p-3">
+  <div class="p-2 w-50 mr-4">
+   <form  action="" method="post">
     {% csrf_token %}
     {% if messages %}
     {% for message in messages %}
       <p {% if message.tags %} class ="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
     {% endfor %}
     {% endif %}
+    <div class="h5 text-primary">
+      Enter the details to add a new profile
+    </div>
     {% for fm in form%}
       <div>
-        {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small><br>
+        <div class="text-dark">
+          {{fm.label_tag}} {{fm}}
+        </div> 
+        <small class="text-danger">{{fm.errors|striptags}}</small><br>
       </div>
     {% endfor %}
-      <div class="col-12 mt-3 ml-auto mr-auto ">
-        <button type="submit" class="btn btn-primary mb-3" >Submit</button>
+      <div class="">
+        <button type="submit" class="btn btn-primary mb-3">Add New Profile</button>
       </div>
    </form>
   </div>
- </div>
+  <div class="d-flex flex-column p-2 w-50 ml-4 text-dark">
+    {% lorem 5 p %}
+  </div>
 </div>
 {% endblock content %}

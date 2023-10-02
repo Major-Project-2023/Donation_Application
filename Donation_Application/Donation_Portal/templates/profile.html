@@ -2,9 +2,9 @@
 {% load static %}
 {% block title %}Profile{% endblock title %}
 {% block content %}
-<div class="d-flex p-3">
+<div class="d-flex p-2">
 <!-- Profile Form  -->
-  <div class="p-2 w-50 mr-4 ml-4">
+  <div class="p-5 w-50 mr-4 ml-4">
    <form  action="" method="post">
     {% csrf_token %}
     {% if messages %}
@@ -29,7 +29,7 @@
    </form>
   </div>
 <!-- Profile list  -->
-  <div class="d-flex p-2 w-50 mr-4 ml-4">
+  <div class="d-flex p-5 w-50 mr-4 ml-4">
     <div class="row">
      {% for prf in proff  %}
         <div class="card" style="width: 45%; margin: auto; margin-top: 1rem;">

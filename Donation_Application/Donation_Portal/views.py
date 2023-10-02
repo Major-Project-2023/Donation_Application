@@ -66,7 +66,6 @@ class ProfileView(View):
 @method_decorator(login_required,name='dispatch')
 class TransactionView(View):
     def get(self,request):
-        trans = Transaction.objects.all()
-        # filter(sender=request.user)
+        trans = Transaction.objects.filter(sender=request.user)
         return render(request,'transaction.html',{'trans':trans,'active':'btn-primary'})
  

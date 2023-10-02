@@ -2,7 +2,7 @@ from django.shortcuts import render
 # from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.views import View
-from .models import Customer
+from .models import Customer, Transaction
 from .forms import SignupForm ,CustomerProfileForm
 from django.contrib import messages
 from django.db.models import Q
@@ -62,3 +62,11 @@ class ProfileView(View):
     
     def delete(self,request):
         pass
+
+@method_decorator(login_required,name='dispatch')
+class TransactionView(View):
+    def get(self,request):
+        trans = Transaction.objects.all()
+        # filter(sender=request.user)
+        return render(request,'transaction.html',{'trans':trans,'active':'btn-primary'})
+ 

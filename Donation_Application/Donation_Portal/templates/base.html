@@ -25,7 +25,8 @@
 </head>
 <body>
 
-<!-- Navbar -->
+
+  <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
 <ul class="navbar-nav mr-auto ml-5">
     <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/">Home</a></li>
@@ -39,7 +40,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
           <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-          <a class="dropdown-item" href="#">Transactions</a>
+          <a class="dropdown-item" href="{% url 'transaction' %}">Transactions</a>
           <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
         </div>
       </div>

@@ -17,6 +17,8 @@ urlpatterns = [
     
     path('profile/', views.ProfileView.as_view(), name='profile'),
 
+    path('transaction/', views.TransactionView.as_view(), name='transaction'),
+
     path('logout/',auth_views.LogoutView.as_view(next_page='login'),name='logout'),
 
 # added to resolve unexpected redirect to this path after login

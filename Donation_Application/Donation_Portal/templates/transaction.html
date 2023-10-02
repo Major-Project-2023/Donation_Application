@@ -4,15 +4,24 @@
 {% block content %}
 <!-- Profile list  -->
 <!-- New Style -->
-<div class="d-flex flex-column justify-content-around border pt-3 pb-3">
+<div class="d-flex flex-column justify-content-around  pt-3 pb-3">
         {% for tr in trans  %}  
         <div class="card mt-2">
             <div class="card-body">
                 <h4 class="fs-19 mb-0">
                 <label class="text-primary ml-2 mr-2">Transaction {{forloop.counter}}</label><span class="badge bg-warning ml-2 ms-1"><i>Date: {{tr.date}}</i></span>
                 </h4>  
-            <p class="ml-4">Sender: {{tr.sender}} Reciver: {{tr.reciver}}</p>
-            <p class="ml-4">Amount: {{tr.amount}} Currency: {{tr.currency}} Mode of Payment: {{tr.mode_of_payment}}</p> 
+            <hr>
+            <div class="ml-4 d-flex flex-row justify-content-around w-75">
+                <div>Sender: {{tr.sender}}</div> 
+                <div>Reciver: {{tr.reciver}}</div>
+                <div>Amount: {{tr.amount}}</div>
+            </div>
+            <hr>
+            <div class="ml-4 d-flex flex-row justify-content-around w-50">
+                <div>Currency: {{tr.currency}}</div>
+                <div>Mode of Payment: {{tr.mode_of_payment}}</div>
+            </div> 
             </div>    
         </div>    
         {% endfor %}

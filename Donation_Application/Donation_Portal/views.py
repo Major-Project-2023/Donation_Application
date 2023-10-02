@@ -36,12 +36,12 @@ class SignupView(View):
 class ProfileView(View):
     def get(self,request):
         proff = Customer.objects.filter(user=request.user)
-#         return render(request, 'app/address.html',{'add':add,'active':'btn-primary'})
         form = CustomerProfileForm()
         return render(request,'profile.html',{'form':form,'proff':proff,'active':'btn-primary'})
  
     def post(self,request):
         form = CustomerProfileForm(request.POST) 
+        proff = Customer.objects.filter(user=request.user)
         if form.is_valid(): 
             user = request.user
             phone = form.cleaned_data['phone']
@@ -52,10 +52,10 @@ class ProfileView(View):
             reg = Customer(user=user,phone=phone,address=address,country=country,ac_number=ac_number,ifsc_code=ifsc_code)
             reg.save()
             messages.success(request,'Congratulations!! ProfileUpdated Successfully')
-            return render(request,'profile.html',{'form':form,'active':'btn-primary'})
+            return render(request,'profile.html',{'form':form,'proff':proff,'active':'btn-primary'})
         else:
             messages.MessageFailure(request,'Oh! No! ProfileUpdate Was Un-Successful')
-            return render(request,'profile.html',{'form':form,'active':'btn-primary'})
+            return render(request,'profile.html',{'form':form,'proff':proff,'active':'btn-primary'})
     
     def update(self,request):
         pass

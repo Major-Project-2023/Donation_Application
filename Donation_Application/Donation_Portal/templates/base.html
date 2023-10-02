@@ -26,10 +26,10 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
 <ul class="navbar-nav mr-auto ml-5">
-    <li class="nav-item active ml-2 mr-2"><a class="nav-link text-light" href="/">Home</a></li>
-    <li class="nav-item active ml-2 mr-2"><a class="nav-link text-light" href="/portal">Portal</a></li>
+    <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/">Home</a></li>
+    <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/portal">Portal</a></li>
 </ul>
 <ul class="navbar-nav mr-5 ml-auto">
   {% if request.user.is_authenticated %}
@@ -45,10 +45,10 @@
       </div>
   {% else %}
      <li class="nav-item mx-2 ml-2 mr-2">
-      <a href="{% url 'login' %}" class="nav-link text-light">Login</a>
+      <a href="{% url 'login' %}" class="btn btn-secondary ml-2 mr-2">Login</a>
      </li>
      <li class="nav-item mx-2 ml-2 mr-2">
-      <a href="{% url 'signup' %}" class="nav-link text-light">Signup</a>
+      <a href="{% url 'signup' %}" class="btn btn-secondary ml-2 mr-2">Signup</a>
      </li>
   {% endif %}
   <style>

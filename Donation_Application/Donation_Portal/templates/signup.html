@@ -17,12 +17,9 @@
                {{fm.label_tag}}{{fm}}<small class="text-danger">{{fm.errors|striptags}}</small>
             </div>
             {% endfor %}
-            <input type="submit" value="Submit" class="btn btn-primary">
+            <input type="submit" value="Submit" class="btn btn-warning">
             <br>
-            <!-- <div class-"text-center text-primary fw-bold">
-               <small>Existing User ? <a herf="/login/" class="text-danger">Login Now</a></small>
-            </div> -->
-            <div class="text-center text-primary fw-bold">
+            <div class="text-center text-secondary fw-bold">
                 <small>Existing User ? <a href="/login/" class="text-danger">Login Now</a></small>
             </div>
             {% if form.non_fiels_errors %}

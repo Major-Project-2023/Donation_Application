@@ -34,7 +34,7 @@
 <ul class="navbar-nav mr-5 ml-auto">
   {% if request.user.is_authenticated %}
        <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle ml-2 mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-warning dropdown-toggle ml-2 mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{request.user.username|capfirst}}
         </button>
         <div class="dropdown-menu" aria-labelledby="profileDropdown">

@@ -28,15 +28,14 @@
    </form>
   </div>
   <div class="d-flex flex-column p-2 w-50 ml-4 text-light">
-    <!-- {% lorem 5 p %} -->
   <!--Add here-  -->
   <div class="col-sm-9 offset-sm-1">
     <div class="row">
      {% for prf in proff  %}
      <div class="col-sm-6">
       <div class="card">
-       <div class="card-body">
-        <h3>Profile {{forloop.counter}}</h3>
+       <div class="card-body bg-secondary">
+        <h3>Profile {{forloop.counter}}</h3>  
         <p class="text-light">Phone: {{prf.phone}}</p>
         <p>Address:{{prf.address}}</p>
         <p>Country:{{prf.country}}</p>

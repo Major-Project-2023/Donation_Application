@@ -27,11 +27,18 @@ class SignupView(View):
             form.save()
         return render(request,'signup.html',{'form':form})
  
+# @login_required
+# def address(request):
+#     add = Customer.objects.filter(user=request.user)
+#     return render(request, 'pro.html',{'add':add,'active':'btn-primary'})
+
 @method_decorator(login_required,name='dispatch')
 class ProfileView(View):
     def get(self,request):
+        proff = Customer.objects.filter(user=request.user)
+#         return render(request, 'app/address.html',{'add':add,'active':'btn-primary'})
         form = CustomerProfileForm()
-        return render(request,'profile.html',{'form':form,'active':'btn-primary'})
+        return render(request,'profile.html',{'form':form,'proff':proff,'active':'btn-primary'})
  
     def post(self,request):
         form = CustomerProfileForm(request.POST) 

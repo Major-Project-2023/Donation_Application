@@ -13,13 +13,13 @@
                 </h4>  
             <hr>
             <div class="ml-4 d-flex flex-row justify-content-around w-75">
-                <div>PAYER : {{tr.sender | upper}}</div> 
-                <div>PAYEE : {{tr.reciver | upper}}</div>
-                <div>AMOUNT : {{tr.amount}}</div>
+                <div>Payer : {{tr.sender | capfirst}}</div> 
+                <div>Payee : {{tr.reciver | capfirst}}</div>
+                <div>Amount : {{tr.amount}}</div>
             </div>
             <hr>
             <div class="ml-4 d-flex flex-row justify-content-around w-50">
-                <div>CURRENCY: {{tr.currency | upper}}</div>
+                <div>Currency: {{tr.currency | upper}}</div>
                 <div>Mode of Payment: {{tr.mode_of_payment}}</div>
             </div> 
             </div>    

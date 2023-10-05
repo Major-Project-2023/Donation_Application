@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-   <div class="row my-3">
-      <div class="col-sm-6 offset-sm-3">
-         <h3>Customer Registration</h3>
-         <hr>
-
+<div class="container pb-3 pt-3">
+     <div class="col-sm-6 offset-sm-3">
          <form action="" method="post" novalidate class="shadow p-5">
             {% csrf_token %}
             {% if messages %}
@@ -19,12 +15,9 @@
                {{fm.label_tag}}{{fm}}<small class="text-danger">{{fm.errors|striptags}}</small>
             </div>
             {% endfor %}
-            <input type="submit" value="Submit" class="btn btn-primary">
+            <input type="submit" value="Submit" class="btn btn-warning">
             <br>
-            <!-- <div class-"text-center text-primary fw-bold">
-               <small>Existing User ? <a herf="/login/" class="text-danger">Login Now</a></small>
-            </div> -->
-            <div class="text-center text-primary fw-bold">
+            <div class="text-center text-secondary fw-bold">
                 <small>Existing User ? <a href="/login/" class="text-danger">Login Now</a></small>
             </div>
             {% if form.non_fiels_errors %}
@@ -33,7 +26,6 @@
             {% endfor%}
             {% endif %}
          </form>
-      </div>
    </div>
 </div>
 {% endblock content %}

@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-ey(tct*z)t@ga!1fs!sqr$89^c)y4b_%uc$k40a3en$gqz&@yb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+# Doing this allows us to be able to make requests from any host ip
+# fro phone etc
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -117,9 +120,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Newly added from shoppingly
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT= BASE_DIR / 'media'
+LOGIN_REDIRECT_URL = '/profile/'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

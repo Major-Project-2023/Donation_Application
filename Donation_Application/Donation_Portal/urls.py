@@ -8,11 +8,13 @@ from .forms import LoginForm,MyPasswordResetForm,MySetPasswordForm
 
 urlpatterns = [
     path('', views.home, name='home'),
+    # path('',views.home.as_view(),name='home'),
     
     path('portal/', views.portal, name = 'portal'),
 
     path('login/',auth_views.LoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
-    # added to resolve unexpected redirect to this path after login
+
+    # added to resolve unexpected redirect to this path after login 
     path('accounts/profile/', views.home,name='home'),
 
     path('signup/',views.SignupView.as_view(),name='signup'),
@@ -30,3 +32,5 @@ urlpatterns = [
     path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),name='password_reset_done'),
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

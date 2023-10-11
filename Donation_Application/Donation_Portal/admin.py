@@ -2,7 +2,8 @@ from django.contrib import admin
 from .models import(
     Customer,
     Transaction,
-    Miner
+    Miner,
+    NGO,
 )
 # Register your models here.
 @admin.register(Customer)
@@ -16,3 +17,7 @@ class TransactionModelAdmin(admin.ModelAdmin):
 @admin.register(Miner)
 class MinerModelAdmin(admin.ModelAdmin):
     list_display = ['id','ip_address','country']
+
+@admin.register(NGO)
+class NGOModelAdmin(admin.ModelAdmin):
+    list_display = ['id','name','registration_number','contact_person','email','phone_number','address','country','mission_statement','website','bank_account_number','social_media_links','registration_proof','created_at']

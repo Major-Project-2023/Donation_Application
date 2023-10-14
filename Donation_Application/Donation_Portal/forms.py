@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext,gettext_lazy as _
 from django.contrib.auth import password_validation
 from .models import Customer
+from paypal.standard.forms import PayPalPaymentsForm
 
 class SignupForm(UserCreationForm):
     password1 = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
@@ -47,3 +48,23 @@ class MySetPasswordForm(SetPasswordForm):
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password","class":"form-control"}),
     )
 
+class CustomPayPalPaymentsForm(PayPalPaymentsForm):
+
+    def get_html_submit_element(self):
+        return """<button type="submit">Continue on PayPal website</button>"""
+        
+        # BUY = "buy"
+        # SUBSCRIBE = "subscribe"
+        # DONATE = "donate"
+        # PAY = "pay"
+        # def get_image(self):
+        #     return {
+        #     self.SUBSCRIBE: SUBSCRIPTION_BUTTON_IMAGE,
+        #     self.BUY: BUY_BUTTON_IMAGE,
+        #     self.DONATE: DONATION_BUTTON_IMAGE,
+        #     self.PAY: PAY_BUTTON_IMAGE,
+        #     }[self.button_type]
+
+        # def is_donation(self):
+        #     warn_untested()
+        #     return self.button_type == self.DONATE

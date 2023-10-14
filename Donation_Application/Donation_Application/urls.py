@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('Donation_Portal.urls')),
     # path('',include('paypal.standard.ipn.urls')),
+    path('paypal/', include("paypal.standard.ipn.urls")),
 ]

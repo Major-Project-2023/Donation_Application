@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class = "text-justify text-dark ml-5 mr-5">
-    {% lorem 15 p %}
+        <h1>Show me the money!</h1>
+        <!-- writes out the form tag automatically -->
+        {{ form.render }}
 </div>
 {% endblock content %}

@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.views import View
 from .models import Customer, Transaction,NGO
-from .forms import SignupForm ,CustomerProfileForm
+from .forms import SignupForm ,CustomerProfileForm,DonationForm
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
@@ -61,39 +61,57 @@ class ProfileView(View):
     def delete(self,request):
         pass
 
-
 # def portal(request):
 #     ngo_id = request.GET.get('ngo_id')
-#     # ngo = get_object(NGO, id=ngo_id)
-#     return render(request, 'paymentportal.html', {'ngo_id': ngo_id}) 
-#     # {'navbar':'portal'},
+#     ngo = get_object_or_404(NGO, id=ngo_id)
+
+#     if request.method == 'POST':
+#         form = DonationForm(request.POST or None)
+#         if form.is_valid():
+#             amount = form.cleaned_data['amount']
+
+#             paypal_dict = {
+#                 "business": settings.PAYPAL_RECEIVER_EMAIL,
+#                 "amount": amount,  # Use the user-provided or default donation amount
+#                 "item_name": f"Donation to {ngo.name}",
+#                 "invoice": f"invoice-{ngo_id}",
+#                 "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+#                 "return": request.build_absolute_uri(reverse('home')),
+#                 "cancel_return": request.build_absolute_uri(reverse('profile')),
+#                 "custom": f"ngo_donation_{ngo_id}",
+#                 }
+
+#             paypal_form = PayPalPaymentsForm(initial=paypal_dict,button_type="donate")
+
+#             return render(request, "paymentportal.html", {'form':form,'paypal_form':paypal_form})
+#         else:
+#             form = DonationForm()
+#         return render(request,'paymentportal.html',{'form':form})
+
 def portal(request):
     ngo_id = request.GET.get('ngo_id')
     ngo = get_object_or_404(NGO, id=ngo_id)
+    form = DonationForm(request.POST or None)  # Initialize form
 
-    # Retrieve custom donation amount from the form (assuming you have a form on your template)
     if request.method == 'POST':
-        donation_amount = request.POST.get('donation_amount')
-    else:
-        donation_amount = "10000000.00"  # Default amount if not provided
+        if form.is_valid():
+            amount = form.cleaned_data['amount']
+            # Create PayPal dictionary
+            paypal_dict = {
+                "business": settings.PAYPAL_RECEIVER_EMAIL,
+                "amount": amount,
+                "item_name": f"Donation to {ngo.name}",
+                "invoice": f"invoice-{ngo_id}",
+                "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+                "return": request.build_absolute_uri(reverse('home')),
+                "cancel_return": request.build_absolute_uri(reverse('profile')),
+                "custom": f"ngo_donation_{ngo_id}",
+            }
+            # Create PayPal form
+            paypal_form = PayPalPaymentsForm(initial=paypal_dict, button_type="donate")
+            return render(request, "paymentportal.html", {'form': form, 'paypal_form': paypal_form})
 
-    paypal_dict = {
-        "business": settings.PAYPAL_RECEIVER_EMAIL,
-        "amount": donation_amount,  # Use the user-provided or default donation amount
-        "item_name": f"Donation to {ngo.name}",
-        "invoice": f"invoice-{ngo_id}",
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        "return": request.build_absolute_uri(reverse('home')),
-        "cancel_return": request.build_absolute_uri(reverse('profile')),
-        "custom": f"ngo_donation_{ngo_id}",
-    }
-
-    form = PayPalPaymentsForm(initial=paypal_dict)
-    context = {
-        "ngo": ngo,
-        "form": form
-    }
-    return render(request, "paymentportal.html", context)
+    return render(request, 'paymentportal.html', {'form': form})
 
 class SignupView(View):
     def get(self,request):

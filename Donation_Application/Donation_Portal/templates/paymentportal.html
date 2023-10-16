@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class = "text-justify text-dark ml-5 mr-5">
-        <h1>Show me the money!</h1>
-        <!-- writes out the form tag automatically -->
-        {{ form.render }}
+        <h1>Make a Donation</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Donation</button>
+        </form>
+    
+        <!-- PayPal Donation Button -->
+        {{ paypal_form.render }}
+    
 </div>
 {% endblock content %}

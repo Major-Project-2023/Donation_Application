@@ -48,10 +48,12 @@ class MySetPasswordForm(SetPasswordForm):
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password","class":"form-control"}),
     )
 
-class CustomPayPalPaymentsForm(PayPalPaymentsForm):
+class DonationForm(forms.Form):
+    amount=forms.DecimalField(label='Donation Amount')
+# class CustomPayPalPaymentsForm(PayPalPaymentsForm):
 
-    def get_html_submit_element(self):
-        return """<button type="submit">Continue on PayPal website</button>"""
+#     def get_html_submit_element(self):
+#         return """<button type="submit">Continue on PayPal website</button>"""
         
         # BUY = "buy"
         # SUBSCRIBE = "subscribe"

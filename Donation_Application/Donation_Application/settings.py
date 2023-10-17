@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-PAYPAL_RECEIVER_EMAIL = 'donationapplication@gmail.com'#where cash is paid into
+PAYPAL_RECEIVER_EMAIL = 'ngo_india@ngo.com'#where cash is paid into
 PAYPAL_TEST = True
 
 # Default primary key field type

@@ -91,6 +91,7 @@ class ProfileView(View):
 def portal(request):
     ngo_id = request.GET.get('ngo_id')
     ngo = get_object_or_404(NGO, id=ngo_id)
+    country = request.GET.get('country')
     form = DonationForm(request.POST or None)  # Initialize form
 
     if request.method == 'POST':
@@ -98,7 +99,8 @@ def portal(request):
             amount = form.cleaned_data['amount']
             # Create PayPal dictionary
             paypal_dict = {
-                "business": settings.PAYPAL_RECEIVER_EMAIL,
+                "cmd" : "_donations",
+                "business": settings.PAYPAL_RECEIVER_EMAIL[country],
                 "amount": amount,
                 "item_name": f"Donation to {ngo.name}",
                 "invoice": f"invoice-{ngo_id}",

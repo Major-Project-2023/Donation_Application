@@ -3,8 +3,8 @@
 <div class = "text-justify text-dark ml-5 mr-5">
     {% for n in ngos  %}
         <div class="card w-75 h-10" >
-            <img src="{{n.registration_proof.url}}" class="img-thumbnail w-80" alt="...">
-            <div class="card-body">
+            <img src="{{n.registration_proof.url}}" class="img-thumbnail w-80"  alt="...">
+            <div class="card-body" style="background-color: #bfbfbf;">
                 <h5 class="card-title"><strong><mark>{{n.name}}</strong></mark></h5>
                 <p class="h6">REGISTRATION NUMBER: <u>{{n.registration_number}}</u></p>
                 <p class="h6">CONTACT PERSON:      <u>{{n.contact_person}}</u></p>
@@ -17,7 +17,7 @@
                 <p class="h6">SOCIAL MEDIA LINKS:  <u>{{n.social_media_links}}</u></p>
                 {% comment %} <p class="h6">REGISTRATION PROOF: {{n.registration_proof}}</p> {% endcomment %}
                 <p class="h6">ACCEPTING FROM:      <u>{{n.created_at}}</u></p>
-                <a href="{% url 'portal' %}?ngo_id={{ n.id }}" class="btn btn-outline-success btn-lg">DONATE</a>
+                <a href="{% url 'portal' %}?ngo_id={{ n.id }}&country={{ n.country }}" class="btn btn-outline-success btn-lg">DONATE</a>
             </div>
         </div>
     {% endfor %}

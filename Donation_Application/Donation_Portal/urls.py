@@ -12,7 +12,8 @@ urlpatterns = [
     # path('',views.home.as_view(),name='home'),
     
     path('portal/', views.portal, name = 'portal'),
-    
+    path('successful',views.successful,name='successful'),
+    path('cancelled',views.cancelled,name='cancelled'),
 
     path('login/',auth_views.LoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
 

@@ -68,8 +68,8 @@ def portal(request):
                 "item_name": f"Donation to {ngo.name}",
                 "invoice": f"invoice-{ngo_id}",
                 "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-                "return": request.build_absolute_uri(reverse('home')),
-                "cancel_return": request.build_absolute_uri(reverse('profile')),
+                "return": request.build_absolute_uri(reverse('successful')),
+                "cancel_return": request.build_absolute_uri(reverse('cancelled')),
                 "custom": f"ngo_donation_{ngo_id}",
             }
             # Create PayPal form
@@ -78,6 +78,11 @@ def portal(request):
 
     return render(request, 'paymentportal.html', {'form': form})
 
+def successful(request):
+    return render(request,'successful.html')
+
+def cancelled(request):
+    return render(request,'cancelled.html')
 
 
 class SignupView(View):

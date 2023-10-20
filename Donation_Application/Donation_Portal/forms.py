@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm, Usern
 from django.contrib.auth.models import User
 from django.utils.translation import gettext,gettext_lazy as _
 from django.contrib.auth import password_validation
-from .models import Customer
+from .models import Customer,NGO
 from paypal.standard.forms import PayPalPaymentsForm
 
 class SignupForm(UserCreationForm):
@@ -27,6 +27,23 @@ class CustomerProfileForm(forms.ModelForm):
         'ac_number':forms.NumberInput(attrs={'class':'form-control'}),
         'ifsc_code':forms.TextInput(attrs={'class':'form-control'})}
 
+# class NGO_RegistrationForm(forms.Form):
+#     class Meta:
+#         model = NGO
+#         fields = '__all__'
+#         widgets = {
+#                    'name':forms.TextInput(attrs={'class':'form-control'}),
+#                    'registration_number':forms.CharField(attrs={'class':'form-control'}),
+#                    'contact_person':forms.CharField(attrs={'class':'form-control'}),
+#                    'email':forms.EmailField(attrs={'class':'form-control'}),
+#                    'phone_number':forms.NumberInput(attrs={'class':'form-control'}),
+#                    'address':forms.CharField(attrs={'class':'form-control'}),
+#                    'country':forms.CharField(attrs={'class':'form-control'}),
+#                    'mission_statement':forms.Textarea(attrs={'class':'form-control'}),
+#                    'bank_account_number':forms.CharField(attrs={'class':'form-control'}),
+#                    'social_media_links':forms.forms.URLField(required=False)(attrs={'class':'form-control'}),
+#                    'registration_proof':forms.forms.ImageField(required=False)(attrs={'class':'form-control'}),
+#                 }
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True,'class':'form-control'}))
@@ -50,23 +67,3 @@ class MySetPasswordForm(SetPasswordForm):
 
 class DonationForm(forms.Form):
     amount=forms.DecimalField(label='Donation Amount')
-# class CustomPayPalPaymentsForm(PayPalPaymentsForm):
-
-#     def get_html_submit_element(self):
-#         return """<button type="submit">Continue on PayPal website</button>"""
-        
-        # BUY = "buy"
-        # SUBSCRIBE = "subscribe"
-        # DONATE = "donate"
-        # PAY = "pay"
-        # def get_image(self):
-        #     return {
-        #     self.SUBSCRIBE: SUBSCRIPTION_BUTTON_IMAGE,
-        #     self.BUY: BUY_BUTTON_IMAGE,
-        #     self.DONATE: DONATION_BUTTON_IMAGE,
-        #     self.PAY: PAY_BUTTON_IMAGE,
-        #     }[self.button_type]
-
-        # def is_donation(self):
-        #     warn_untested()
-        #     return self.button_type == self.DONATE

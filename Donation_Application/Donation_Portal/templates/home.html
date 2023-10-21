@@ -4,7 +4,7 @@
 {% block content %}
 <div class = "text-justify text-dark ml-5 mr-5">
     {% for n in ngos  %}
-        <div class="card w-75 h-10" >
+        <div class="card w-75 h-10 d-flex flex-row" >
             <img src="{{n.registration_proof.url}}" class="img-thumbnail w-80"  alt="...">
             <div class="card-body" style="background-color: #bfbfbf;">
                 <h5 class="card-title"><strong><mark>{{n.name}}</strong></mark></h5>

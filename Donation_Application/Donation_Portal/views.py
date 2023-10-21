@@ -50,7 +50,8 @@ class ProfileView(View):
     
     def delete(self,request):
         pass
-
+    
+@csrf_exempt
 def portal(request):
     ngo_id = request.GET.get('ngo_id')
     ngo = get_object_or_404(NGO, id=ngo_id)

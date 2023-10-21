@@ -2,10 +2,10 @@
 {% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-<div class = "text-justify text-dark ml-5 mr-5">
+<div class = "text-justify text-dark ml-0 mr-0">
     {% for n in ngos  %}
-        <div class="card w-75 h-10 d-flex flex-row" >
-            <img src="{{n.registration_proof.url}}" class="img-thumbnail w-80"  alt="...">
+        <div class="card w-50 d-flex flex-row" >
+            <img src="{{n.registration_proof.url}}" class="img-thumbnail"  alt="...">
             <div class="card-body" style="background-color: #bfbfbf;">
                 <h5 class="card-title"><strong><mark>{{n.name}}</strong></mark></h5>
                 <p class="h6">REGISTRATION NUMBER: <u>{{n.registration_number}}</u></p>

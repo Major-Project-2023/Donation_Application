@@ -37,11 +37,11 @@ class NGO_RegistrationForm(forms.ModelForm):
     country=forms.TextInput(attrs={'class':'form-control'})
     mission_statement=forms.Textarea(attrs={'class':'form-control'})
     bank_account_number=forms.TextInput(attrs={'class':'form-control'})
-    social_media_links=forms.URLField(),
+    webite=forms.URLField(),
     registration_proof=forms.ImageField(),
     class Meta:
         model = NGO
-        fields = ['name','registration_number','contact_person','email', 'phone_number','address','country','mission_statement','bank_account_number','social_media_links','registration_proof']
+        fields = ['name','registration_number','contact_person','email', 'phone_number','address','country','mission_statement','bank_account_number','website','registration_proof']
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True,'class':'form-control'}))

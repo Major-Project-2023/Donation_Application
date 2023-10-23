@@ -14,13 +14,17 @@
             <hr>
             <div class="ml-4 d-flex flex-row justify-content-around w-75">
                 <div>Payer : {{tr.sender | capfirst}}</div> 
-                <div>Payee : {{tr.reciver | capfirst}}</div>
+                <div>Payee : {{tr.receiver | capfirst}}</div>
+                <div>Payer paypal email : {{tr.sender_paypal_email}}</div>
+                <div>Payee paypal email : {{tr.receiver_paypal_email}}</div>
                 <div>Amount : {{tr.amount}}</div>
+                
             </div>
             <hr>
             <div class="ml-4 d-flex flex-row justify-content-around w-50">
                 <div>Currency: {{tr.currency | upper}}</div>
                 <div>Mode of Payment: {{tr.mode_of_payment}}</div>
+                <div>Payment Status: {{tr.payment_status}}</div>
             </div> 
             </div>    
         </div>    

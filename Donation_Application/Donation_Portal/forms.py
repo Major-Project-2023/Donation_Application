@@ -27,23 +27,26 @@ class CustomerProfileForm(forms.ModelForm):
         'ac_number':forms.NumberInput(attrs={'class':'form-control'}),
         'ifsc_code':forms.TextInput(attrs={'class':'form-control'})}
 
-# class NGO_RegistrationForm(forms.Form):
-#     class Meta:
-#         model = NGO
-#         fields = '__all__'
-#         widgets = {
-#                    'name':forms.TextInput(attrs={'class':'form-control'}),
-#                    'registration_number':forms.CharField(attrs={'class':'form-control'}),
-#                    'contact_person':forms.CharField(attrs={'class':'form-control'}),
-#                    'email':forms.EmailField(attrs={'class':'form-control'}),
-#                    'phone_number':forms.NumberInput(attrs={'class':'form-control'}),
-#                    'address':forms.CharField(attrs={'class':'form-control'}),
-#                    'country':forms.CharField(attrs={'class':'form-control'}),
-#                    'mission_statement':forms.Textarea(attrs={'class':'form-control'}),
-#                    'bank_account_number':forms.CharField(attrs={'class':'form-control'}),
-#                    'social_media_links':forms.forms.URLField(required=False)(attrs={'class':'form-control'}),
-#                    'registration_proof':forms.forms.ImageField(required=False)(attrs={'class':'form-control'}),
-#                 }
+class NGO_RegistrationForm(forms.Form):
+    class Meta:
+        model = NGO
+        # fields = '__all__'
+        fields = ['name','registration_number','contact_person','email', 'phone_number','address','country','mission_statement','bank_account_number']
+        # ,'social_media_links','registration_proof'
+        widgets = {
+                   'name':forms.TextInput(attrs={'class':'form-control'}),
+                   'registration_number':forms.TextInput(attrs={'class':'form-control'}),
+                   'contact_person':forms.TextInput(attrs={'class':'form-control'}),
+                   'email':forms.EmailInput(attrs={'class':'form-control'}),
+                   'phone_number':forms.NumberInput(attrs={'class':'form-control'}),
+                   'address':forms.TextInput(attrs={'class':'form-control'}),
+                   'country':forms.TextInput(attrs={'class':'form-control'}),
+                   'mission_statement':forms.Textarea(attrs={'class':'form-control'}),
+                   'bank_account_number':forms.TextInput(attrs={'class':'form-control'}),
+                #    'social_media_links':forms.URLField(required=False)(attrs={'class':'form-control'}),
+                   
+                #    'registration_proof':forms.ImageField(required=False)(attrs={'class':'form-control'}),
+                }
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True,'class':'form-control'}))

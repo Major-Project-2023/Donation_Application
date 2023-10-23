@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect, get_object_or_404
 from django.views import View
 from .models import Customer, Transaction,NGO
-from .forms import SignupForm ,CustomerProfileForm,DonationForm
+from .forms import SignupForm ,CustomerProfileForm,DonationForm,NGO_RegistrationForm
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
@@ -50,7 +50,7 @@ class ProfileView(View):
     
     def delete(self,request):
         pass
-    
+
 @csrf_exempt
 def portal(request):
     ngo_id = request.GET.get('ngo_id')
@@ -79,6 +79,7 @@ def portal(request):
 
     return render(request, 'paymentportal.html', {'form': form})
 
+@csrf_exempt
 def successful(request):
     return render(request,'successful.html')
 

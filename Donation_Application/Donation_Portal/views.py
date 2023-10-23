@@ -105,3 +105,12 @@ class TransactionView(View):
         trans = Transaction.objects.filter(sender=request.user)
         return render(request,'transaction.html',{'trans':trans,'active':'btn-primary'})
  
+
+def NGO_Registration(request):
+    if request.POST:
+        form = NGO_RegistrationForm(request.POST,request.FILES)
+        print(request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(home)
+    return render(request,'NGO_registration.html',{'form':NGO_RegistrationForm})

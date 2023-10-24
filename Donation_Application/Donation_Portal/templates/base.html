@@ -2,16 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% if title %}
-    <title>
-      {{ title }}
-    </title>
-    {%else%}
-    <title>
-      Django App
-    </title>
-    {%endif%}
-
+    <title>MN Pay | {% block title %} {% endblock title %} </title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,11 +19,15 @@
 
   <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-<ul class="navbar-nav mr-auto ml-5">
+  <ul class="navbar-nav mr-auto ml-5">
     <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/">Home</a></li>
-    <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/portal">Portal</a></li>
-</ul>
-<ul class="navbar-nav mr-5 ml-auto">
+    <!-- <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/portal">Portal</a></li> -->
+    <a  href="{% url 'NGO_Registration' %}" class="btn btn-warning">NGO Registration</a>
+  </ul>
+  <img src="{% static 'images\logo.jpg' %}" alt="Your Logo" class="logo" align="center" width="60" hieght = "60">
+  
+  <ul class="navbar-nav mr-5 ml-auto">
+    
   {% if request.user.is_authenticated %}
        <div class="dropdown">
         <button class="btn btn-warning dropdown-toggle ml-2 mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,10 +47,11 @@
       <a href="{% url 'signup' %}" class="btn btn-secondary ml-2 mr-2">Signup</a>
      </li>
   {% endif %}
-</ul>
+  <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="#">About Us</a></li>
+  </ul>
 </nav>  
 <!-- Main Section -->
-<div class="pl-5 pr-5" style="background-color: #d1d1d1;">
+<div class="pl-5 pr-5" style="background-color: #ffffff;">
   <div class="ml-5 mr-5 pt-2 pb-2" >
     {% block content %}{% endblock %}
   </div>

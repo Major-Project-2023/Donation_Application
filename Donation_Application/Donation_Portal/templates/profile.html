@@ -32,18 +32,18 @@
   <div class="d-flex p-4 w-50 mr-4 ml-4">
     <div class="row">
      {% for prf in proff  %}
-        <div class="card" style="width: 45%; margin: auto; margin-top: 1rem;">
-          <div class="card-body">    
-        <h3>Profile {{forloop.counter}}</h3>  
-        <p class="text-primary">Number: {{prf.phone}}</p>
-        <p>Address: {{prf.address}}</p>
-        <p>Country: {{prf.country}}</p>
-        <p>Account Number: {{prf.ac_number}}</p> 
-        <p>IFSC Code: {{prf.ifsc_code}}</p> 
-          <a class="btn btn-primary margin-auto" href="#">Edit</a>
-          <a class="btn btn-warning margin-auto" href="#">Delete</a>
-      </div>
-      </div>
+          <div class="card" style="width: 45%; margin: auto; margin-top: 1rem;">
+            <div class="card-body">    
+              <h3>Profile {{forloop.counter}}</h3>  
+              <p class="text-primary">Number: {{prf.phone}}</p>
+              <p>Address: {{prf.address}}</p>
+              <p>Country: {{prf.country}}</p>
+              <p>Account Number: {{prf.ac_number}}</p> 
+              <p>IFSC Code: {{prf.ifsc_code}}</p> 
+              <a class="btn btn-primary margin-auto" href="#">Edit</a>
+              <a class="btn btn-warning margin-auto" href="#">Delete</a>
+            </div>
+          </div>
      <!-- </div> -->
      {% endfor %}
     </div>

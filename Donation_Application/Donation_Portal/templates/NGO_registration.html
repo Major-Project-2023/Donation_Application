@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}NGO Registration{% endblock title %}
+{% block content %}
+<form method="POST" action="{% url 'NGO_Registration' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form}}
+  <button>submit</button>
+</form>
+
+{% endblock content %}

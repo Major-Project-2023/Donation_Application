@@ -4,15 +4,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm,MyPasswordResetForm,MySetPasswordForm
+from django.views.decorators.csrf import csrf_exempt
 # MyPasswordChangeForm,MySetPasswordForm
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('NGO_Registration/',views.NGO_Registration,name='NGO_Registration'),
     
     path('portal/', views.portal, name = 'portal'),
+    path('successful/',views.successful,name='successful'),
+    path('cancelled/',views.cancelled,name='cancelled'),
 
     path('login/',auth_views.LoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
-    # added to resolve unexpected redirect to this path after login
+
+    # added to resolve unexpected redirect to this path after login 
     path('accounts/profile/', views.home,name='home'),
 
     path('signup/',views.SignupView.as_view(),name='signup'),
@@ -30,3 +35,5 @@ urlpatterns = [
     path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),name='password_reset_done'),
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

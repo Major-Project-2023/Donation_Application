@@ -21,10 +21,11 @@ def webhook(sender, **kwargs):
             payment_status=ipn_obj.payment_status,
             mode_of_payment=ipn_obj.payment_type,
         )
-
+        print(f"{ipn_obj.item_name}\n{ipn_obj.receiver_email}\n")
         # Save the Transaction instance
         transaction.save()
-
+        
+            #   \n{first_name}\n{payer_email}\n{receiver_email}\n{ngo_name}\n{mc_currency}\n{payment_type}\n{User}")
 
     # if ipn_obj.payment_status == ST_PP_COMPLETED:
     #     mc_gross = ipn_obj.mc_gross 

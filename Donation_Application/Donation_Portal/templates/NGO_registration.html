@@ -2,8 +2,8 @@
 {% load static %}
 {% block title %}NGO Registration{% endblock title %}
 {% block content %}
-<div class="d-flex p-0"> 
-  <div class="p-2 w-50 mr-6 ml-6">
+<div class=""> 
+  <div class="p-3 w-50 mr-4 ml-4">
     <form method="POST" action="{% url 'NGO_Registration' %}" enctype="multipart/form-data">
       {% csrf_token %}
       {% if messages %}
@@ -11,13 +11,13 @@
           <p {% if message.tags %} class ="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
         {% endfor %}
       {% endif %}
-      <div class="h5 text-primary">
+      <div class="h5 text-success">
         Enter the details to register your NGO
       </div>
       {% for fm in form%}
         <div>
-          <div class="text-dark">
-            {{fm.label_tag}}<br> {{fm}}
+          <div class="form-group text-dark">
+            {{fm.label_tag}} {{fm}}
           </div> 
           <small class="text-danger">{{fm.errors|striptags}}</small><br>
         </div>
@@ -25,7 +25,7 @@
       <!-- {{form}} -->
       <!-- <button>submit</button> -->
       <div class="">
-        <input type="submit" class="btn btn-primary mb-3" value="SUBMIT">
+        <input type="submit" class="btn btn-outline-success btn-lg" value="SUBMIT">
       </div>
     </form>
   </div>

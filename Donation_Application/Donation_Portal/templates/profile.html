@@ -12,7 +12,7 @@
       <p {% if message.tags %} class ="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
     {% endfor %}
     {% endif %}
-    <div class="h5 text-primary">
+    <div class="h5 text-success">
       Enter the details to add a new profile
     </div>
     {% for fm in form%}
@@ -24,7 +24,7 @@
       </div>
     {% endfor %}
       <div class="">
-        <input type="submit" class="btn btn-primary mb-3" value="Add New Profile">
+        <input type="submit" class="btn btn-outline-success btn-lg" value="Add New Profile">
       </div>
    </form>
   </div>
@@ -40,7 +40,7 @@
               <p>Country: {{prf.country}}</p>
               <p>Account Number: {{prf.ac_number}}</p> 
               <p>IFSC Code: {{prf.ifsc_code}}</p> 
-              <a class="btn btn-primary margin-auto" href="#">Edit</a>
+              <a class="btn btn-success margin-auto" href="#">Edit</a>
               <a class="btn btn-warning margin-auto" href="#">Delete</a>
             </div>
           </div>

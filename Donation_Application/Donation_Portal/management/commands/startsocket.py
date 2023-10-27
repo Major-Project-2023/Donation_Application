@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 import socket, time, threading
 import sys
 sys.path.append('../C:\\Users\\Yashwardhan\\Desktop\\Major Project Soham\\Donation_Application\\Donation_Application\\Donation_Portal')
-from Donation_Portal.models import Transaction
+from Donation_Portal.models import Pool
 
 HEADERSIZE = 10
 
@@ -29,21 +29,25 @@ class Command(BaseCommand):
         self.i = 0
         while 1:
             self.i+=1
-            time.sleep(5)  # Send a message every 5 seconds
+            time.sleep(60)  # Send a message every 5 seconds
             self.msg = f'{self.i} The time is{time.time()}'
 
-            transaction = Transaction.objects.all()
+            pool = Pool.objects.all()
             obj = []
-            for tr in transaction:
+            for pl in pool:
                 curr = []
-                curr.append(tr.sender)
-                curr.append(tr.receiver)
-                curr.append(tr.sender_paypal_email)
-                curr.append(tr.receiver_paypal_email)
-                curr.append(tr.amount)
+                curr.append(pl.sender)
+                curr.append(pl.receiver)
+                curr.append(pl.sender_paypal_email)
+                curr.append(pl.receiver_paypal_email)
+                curr.append(pl.amount)
                 # print(curr)
                 obj.append(curr)                
                 # print(tr.sender,tr.receiver,tr.sender_paypal_email,tr.receiver_paypal_email,tr.amount)
+            
+            # Emptying the pool
+            Pool.objects.all().delete()
+            
             print(f"\n{self.i} The whole object is\n")
             print(str(obj)+'\n')
 

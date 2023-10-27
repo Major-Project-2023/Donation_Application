@@ -16,7 +16,7 @@ class TransactionModelAdmin(admin.ModelAdmin):
     list_display = ['id','sender','receiver','sender_paypal_email','receiver_paypal_email','payment_status','date','amount','currency','mode_of_payment']
 
 @admin.register(Pool)
-class TransactionModelAdmin(admin.ModelAdmin):
+class PoolModelAdmin(admin.ModelAdmin):
     list_display = ['id','sender','receiver','sender_paypal_email','receiver_paypal_email','payment_status','date','amount','currency','mode_of_payment']
 
 @admin.register(Miner)

@@ -1,6 +1,10 @@
 from django.core.management.base import BaseCommand
 import socket, time, threading
-HEADERSIZE = 10
+import sys
+sys.path.append('../C:\\Users\\Yashwardhan\\Desktop\\Major Project Soham\\Donation_Application\\Donation_Application\\Donation_Portal')
+from Donation_Portal.models import Transaction
+
+HEADERSIZE = 100
 
 class Command(BaseCommand):
     help = 'Open a socket in Django'
@@ -25,9 +29,24 @@ class Command(BaseCommand):
         self.i = 0
         while True:
             self.i+=1
-            time.sleep(10)  # Send a message every 5 seconds
+            time.sleep(5)  # Send a message every 5 seconds
             self.msg = f'{self.i} The time is{time.time()}'
             self.msg = f"{len(self.msg):<{HEADERSIZE}}" + self.msg
+            transaction = Transaction.objects.all()
+            obj = []
+            for tr in transaction:
+                curr = []
+                curr.append(tr.sender)
+                curr.append(tr.receiver)
+                curr.append(tr.sender_paypal_email)
+                curr.append(tr.receiver_paypal_email)
+                curr.append(tr.amount)
+                # print(curr)
+                obj.append(curr)                
+                # print(tr.sender,tr.receiver,tr.sender_paypal_email,tr.receiver_paypal_email,tr.amount)
+            print(f"\n{self.i} The whole object is\n")
+            print(str(obj)+'\n')
+            self.msg += str(obj)
             for client_socket in self.connected_clients:
                 try:
                     client_socket.send(self.msg.encode())

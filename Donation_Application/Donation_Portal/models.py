@@ -46,3 +46,14 @@ class Transaction(models.Model):
     currency = models.CharField(max_length=20)
     payment_status = models.CharField(max_length=30)
     mode_of_payment = models.CharField(max_length=20)
+
+class Pool(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pool_sender')
+    receiver = models.CharField(max_length=30)
+    sender_paypal_email = models.EmailField()
+    receiver_paypal_email = models.EmailField()
+    date = models.DateTimeField(auto_now_add=True)
+    amount = models.IntegerField()
+    currency = models.CharField(max_length=20)
+    payment_status = models.CharField(max_length=30)
+    mode_of_payment = models.CharField(max_length=20)

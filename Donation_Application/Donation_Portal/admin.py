@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import(
     Customer,
     Transaction,
+    Pool,
     Miner,
     NGO,
 )
@@ -11,6 +12,10 @@ class CustomerModelAdmin(admin.ModelAdmin):
     list_display = ['id','user','phone','address','country','ac_number','ifsc_code']
 
 @admin.register(Transaction)
+class TransactionModelAdmin(admin.ModelAdmin):
+    list_display = ['id','sender','receiver','sender_paypal_email','receiver_paypal_email','payment_status','date','amount','currency','mode_of_payment']
+
+@admin.register(Pool)
 class TransactionModelAdmin(admin.ModelAdmin):
     list_display = ['id','sender','receiver','sender_paypal_email','receiver_paypal_email','payment_status','date','amount','currency','mode_of_payment']
 

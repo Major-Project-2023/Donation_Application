@@ -4,7 +4,7 @@ import sys
 sys.path.append('../C:\\Users\\Yashwardhan\\Desktop\\Major Project Soham\\Donation_Application\\Donation_Application\\Donation_Portal')
 from Donation_Portal.models import Transaction
 
-HEADERSIZE = 100
+HEADERSIZE = 10
 
 class Command(BaseCommand):
     help = 'Open a socket in Django'
@@ -27,11 +27,11 @@ class Command(BaseCommand):
 
     def send_periodic_messages(self):
         self.i = 0
-        while True:
+        while 1:
             self.i+=1
             time.sleep(5)  # Send a message every 5 seconds
             self.msg = f'{self.i} The time is{time.time()}'
-            self.msg = f"{len(self.msg):<{HEADERSIZE}}" + self.msg
+
             transaction = Transaction.objects.all()
             obj = []
             for tr in transaction:
@@ -46,7 +46,11 @@ class Command(BaseCommand):
                 # print(tr.sender,tr.receiver,tr.sender_paypal_email,tr.receiver_paypal_email,tr.amount)
             print(f"\n{self.i} The whole object is\n")
             print(str(obj)+'\n')
-            self.msg += str(obj)
+
+            self.msg = self.msg + "\n" + str(obj)
+
+            self.msg = f"{len(self.msg):<{HEADERSIZE}}" + self.msg
+            # self.msg += "[<User: soham>, 'NGO2', 'donor1@donor.com'"
             for client_socket in self.connected_clients:
                 try:
                     client_socket.send(self.msg.encode())

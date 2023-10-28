@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
-import socket, time, threading
-import sys
+import socket, time, threading, sys
+
 sys.path.append('../C:\\Users\\Yashwardhan\\Desktop\\Major Project Soham\\Donation_Application\\Donation_Application\\Donation_Portal')
 from Donation_Portal.models import Pool
 
@@ -67,7 +67,7 @@ class Command(BaseCommand):
         server_socket.bind(('127.0.0.10', 7777))
         server_socket.listen(5)
 
-        print('Server is listening on port 8080')
+        print('Server is listening on port 7777')
 
         # Start the thread for sending periodic messages
         periodic_message_thread = threading.Thread(target=self.send_periodic_messages)

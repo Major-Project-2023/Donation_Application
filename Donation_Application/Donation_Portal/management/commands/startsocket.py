@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 import socket, time, threading, sys
-
 sys.path.append('../C:\\Users\\Yashwardhan\\Desktop\\Major Project Soham\\Donation_Application\\Donation_Application\\Donation_Portal')
 from Donation_Portal.models import Pool
 
@@ -29,7 +28,7 @@ class Command(BaseCommand):
         self.i = 0
         while 1:
             self.i+=1
-            time.sleep(60)  # Send a message every 5 seconds
+            time.sleep(60)  # Send a message every 60 seconds
             self.msg = f'{self.i} The time is{time.time()}'
 
             pool = Pool.objects.all()

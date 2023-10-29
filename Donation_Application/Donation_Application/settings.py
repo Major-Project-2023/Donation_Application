@@ -127,6 +127,7 @@ PAYPAL_RECEIVER_EMAIL = {
     'India' : 'ngo_india@ngo.com',
     'China' : 'ngo_china@ngo.com',
     'USA' : 'ngo_usa@ngo.com',
+    'Honkong':'ngo_honkong@ngo.com'
 }#where cash is paid into
 PAYPAL_TEST = True
 

@@ -37,7 +37,7 @@ class Command(BaseCommand):
                 curr.append(pl.sender_paypal_email)
                 curr.append(pl.receiver_paypal_email)
                 curr.append(pl.amount)
-                obj.append(curr)                
+                obj.append(curr)                    
             # Emptying the pool
             Pool.objects.all().delete()            
             self.stdout.write(self.style.HTTP_INFO(f"\n{self.i} The whole object is\n"))

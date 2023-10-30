@@ -49,7 +49,7 @@ class Transaction(models.Model):
 
 class Pool(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pool_sender')
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pool_receiver')
+    receiver = models.CharField(max_length=30)
     sender_paypal_email = models.EmailField()
     receiver_paypal_email = models.EmailField()
     date = models.DateTimeField(auto_now_add=True)

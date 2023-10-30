@@ -20,6 +20,10 @@ def home(request):
     all_ngos = NGO.objects.all()
     return render(request, 'home.html',{'ngos': all_ngos}) #{'navbar':'home'}
     
+def ngo_registration(request):
+    ngo_form = NGO_RegistrationForm()
+    return render(request, 'NGO_registration.html', {'ngo_form':ngo_form})
+
 @method_decorator(login_required,name='dispatch')
 class ProfileView(View):
     def get(self,request):

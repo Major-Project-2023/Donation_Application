@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-<div class = "text-justify text-dark ml-5 mr-5">
+<div class = "text-justify text-dark ml-0 mr-0">
     {% for n in ngos  %}
         <div class="card w-100 h-10 flex-row mt-3">
             <img src="{{n.registration_proof.url}}" class="img-fluid w-50"  alt="...">

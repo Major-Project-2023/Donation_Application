@@ -11,16 +11,7 @@ class Customer(models.Model):
     ifsc_code = models.CharField(max_length=11)
     def __str__(self):
         return str(self.id)
-        
     
-class Transaction(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')
-    reciver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reciver')
-    date = models.DateTimeField(auto_now_add=True)
-    amount = models.IntegerField()
-    currency = models.CharField(max_length=20)
-    mode_of_payment = models.CharField(max_length=20)
-
 class Miner(models.Model):
     ip_address = models.CharField(max_length=15)
     country = models.CharField(max_length=20)
@@ -44,3 +35,14 @@ class NGO(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Transaction(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')
+    receiver = models.CharField(max_length=30)
+    sender_paypal_email = models.EmailField()
+    receiver_paypal_email = models.EmailField()
+    date = models.DateTimeField(auto_now_add=True)
+    amount = models.IntegerField()
+    currency = models.CharField(max_length=20)
+    payment_status = models.CharField(max_length=30)
+    mode_of_payment = models.CharField(max_length=20)

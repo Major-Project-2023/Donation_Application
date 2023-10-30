@@ -3,12 +3,11 @@ import socket, time, threading, sys, pickle
 sys.path.append('../C:\\Users\\Yashwardhan\\Desktop\\Major Project Soham\\Donation_Application\\Donation_Application\\Donation_Portal')
 from Donation_Portal.models import Pool
 
-HEADERSIZE = 10
-
 class Command(BaseCommand):
     help = 'Open a socket in Django'
     # List to keep track of connected client sockets
     connected_clients = []
+    
     def handle_client(self, client_socket):
         try:
             while True:
@@ -26,34 +25,31 @@ class Command(BaseCommand):
         self.i = 0
         while 1:
             self.i+=1
-            time.sleep(10)  # Send a message every 60 seconds
-            # self.msg = f'{self.i} The time is{time.time()}'
+            # Sleeping for 10s
+            time.sleep(10)
+            # Fetching from pool
             pool = Pool.objects.all()
             obj = []
             for pl in pool:
                 curr = []
-                # curr.append(pl.sender)
-                # curr.append(pl.receiver)
                 curr.append(pl.sender_paypal_email)
                 curr.append(pl.receiver_paypal_email)
                 curr.append(pl.amount)
                 obj.append(curr)                    
             # Emptying the pool
-            Pool.objects.all().delete()            
+            Pool.objects.all().delete() 
+            # Displaying the data object
             self.stdout.write(self.style.HTTP_INFO(f"\n{self.i} The whole object is\n"))
             self.stdout.write(self.style.HTTP_INFO(str(obj)+'\n'))
-            # self.msg = self.msg + "\n" + str(obj)
-            # self.msg = f"{len(self.msg):<{HEADERSIZE}}" + self.msg
-            # self.msg += "[<User: soham>, 'NGO2', 'donor1@donor.com'"
+            # Pickeling the data object and sending it
             self.msg = obj
             self.msg_to_send = pickle.dumps(self.msg)
             for client_socket in self.connected_clients:
                 try:
-                    # client_socket.send(self.msg.encode())
                     client_socket.send(self.msg_to_send)
                 except Exception as e:
                     self.stdout.write(self.style.WARNING(f'Error sending message to client: {e}'))
-    
+    # Main function kinda
     def handle(self, *args, **options):
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.bind(('127.0.0.10', 7777))

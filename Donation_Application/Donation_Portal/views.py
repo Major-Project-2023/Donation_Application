@@ -55,7 +55,10 @@ class ProfileView(View):
     def delete(self,request):
         pass
 
+@login_required
+@csrf_exempt
 def portal(request):
+    user = request.user
     ngo_id = request.GET.get('ngo_id')
     ngo = get_object_or_404(NGO, id=ngo_id)
     country = request.GET.get('country')
@@ -69,12 +72,12 @@ def portal(request):
                 "cmd" : "_donations",
                 "business": settings.PAYPAL_RECEIVER_EMAIL[country],
                 "amount": amount,
-                "item_name": f"Donation to {ngo.name}",
+                "item_name": ngo.name,
                 "invoice": f"invoice-{ngo_id}",
                 "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
                 "return": request.build_absolute_uri(reverse('successful')),
                 "cancel_return": request.build_absolute_uri(reverse('cancelled')),
-                "custom": f"ngo_donation_{ngo_id}",
+                "custom": user,
             }
             # Create PayPal form
             paypal_form = PayPalPaymentsForm(initial=paypal_dict, button_type="donate")
@@ -82,6 +85,7 @@ def portal(request):
 
     return render(request, 'paymentportal.html', {'form': form})
 
+@csrf_exempt
 def successful(request):
     return render(request,'successful.html')
 
@@ -107,3 +111,12 @@ class TransactionView(View):
         trans = Transaction.objects.filter(sender=request.user)
         return render(request,'transaction.html',{'trans':trans,'active':'btn-primary'})
  
+
+def NGO_Registration(request):
+    if request.POST:
+        form = NGO_RegistrationForm(request.POST,request.FILES)
+        print(request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(home)
+    return render(request,'NGO_registration.html',{'form':NGO_RegistrationForm})

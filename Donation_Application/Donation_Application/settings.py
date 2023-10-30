@@ -30,7 +30,7 @@ DEBUG = True
 # Doing this allows us to be able to make requests from any host ip
 # fro phone etc
 ALLOWED_HOSTS = ['*']
-
+# CSRF_TRUSTED_ORIGINS = ['']
 
 # Application definition
 
@@ -127,6 +127,7 @@ PAYPAL_RECEIVER_EMAIL = {
     'India' : 'ngo_india@ngo.com',
     'China' : 'ngo_china@ngo.com',
     'USA' : 'ngo_usa@ngo.com',
+    'Honkong':'ngo_honkong@ngo.com'
 }#where cash is paid into
 PAYPAL_TEST = True
 

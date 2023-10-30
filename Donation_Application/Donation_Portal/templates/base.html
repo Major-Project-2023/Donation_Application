@@ -22,8 +22,7 @@
   <ul class="navbar-nav mr-auto ml-5">
     <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/">Home</a></li>
     <!-- <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/portal">Portal</a></li> -->
-    <!-- <button type="button" class="btn btn-warning ml-2 mr-2">NGO Registration</button> -->
-    <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="{% url 'ngo_registration' %}">NGO Registration</a></li>
+    <a  href="{% url 'NGO_Registration' %}" class="btn btn-warning">NGO Registration</a>
   </ul>
   <img src="{% static 'images\logo.jpg' %}" alt="Your Logo" class="logo" align="center" width="60" hieght = "60">
   
@@ -52,11 +51,17 @@
   </ul>
 </nav>  
 <!-- Main Section -->
-<div class="pl-5 pr-5" style="background-color: #ffffff;">
-  <div class="ml-5 mr-5 pt-2 pb-2" >
+<div class="" style="background-color: #ffffff;">
+  <div class="ml-5 mr-5 pt-1 pb-2" >
     {% block content %}{% endblock %}
   </div>
 </div>
+
+    <!-- Start Footer -->
+<footer class="container-fluid bg-secondary text-center p-2 mt-5">
+      <small class="text-white">Copyright &copy; 2024 || Designed And Managed By MN-Pay Team || </small>
+      <img src="{% static 'app/images/payment.png' %}" alt="" srcset="" class="img-fluid" height="2px">
+</footer> <!-- End Footer -->
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

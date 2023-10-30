@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-import socket, time, threading, sys
+import socket, time, threading, sys, pickle
 sys.path.append('../C:\\Users\\Yashwardhan\\Desktop\\Major Project Soham\\Donation_Application\\Donation_Application\\Donation_Portal')
 from Donation_Portal.models import Pool
 
@@ -27,13 +27,13 @@ class Command(BaseCommand):
         while 1:
             self.i+=1
             time.sleep(10)  # Send a message every 60 seconds
-            self.msg = f'{self.i} The time is{time.time()}'
+            # self.msg = f'{self.i} The time is{time.time()}'
             pool = Pool.objects.all()
             obj = []
             for pl in pool:
                 curr = []
-                curr.append(pl.sender)
-                curr.append(pl.receiver)
+                # curr.append(pl.sender)
+                # curr.append(pl.receiver)
                 curr.append(pl.sender_paypal_email)
                 curr.append(pl.receiver_paypal_email)
                 curr.append(pl.amount)
@@ -42,12 +42,15 @@ class Command(BaseCommand):
             Pool.objects.all().delete()            
             self.stdout.write(self.style.HTTP_INFO(f"\n{self.i} The whole object is\n"))
             self.stdout.write(self.style.HTTP_INFO(str(obj)+'\n'))
-            self.msg = self.msg + "\n" + str(obj)
-            self.msg = f"{len(self.msg):<{HEADERSIZE}}" + self.msg
+            # self.msg = self.msg + "\n" + str(obj)
+            # self.msg = f"{len(self.msg):<{HEADERSIZE}}" + self.msg
             # self.msg += "[<User: soham>, 'NGO2', 'donor1@donor.com'"
+            self.msg = obj
+            self.msg_to_send = pickle.dumps(self.msg)
             for client_socket in self.connected_clients:
                 try:
-                    client_socket.send(self.msg.encode())
+                    # client_socket.send(self.msg.encode())
+                    client_socket.send(self.msg_to_send)
                 except Exception as e:
                     self.stdout.write(self.style.WARNING(f'Error sending message to client: {e}'))
     

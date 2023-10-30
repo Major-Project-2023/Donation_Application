@@ -20,6 +20,8 @@ def webhook(sender, **kwargs):
             currency=ipn_obj.mc_currency,
             payment_status=ipn_obj.payment_status,
             mode_of_payment=ipn_obj.payment_type,
+            # user_country
+            # ngo_country
         )
         print(f"{ipn_obj.item_name}\n{ipn_obj.receiver_email}\n")
         # Save the Transaction instance

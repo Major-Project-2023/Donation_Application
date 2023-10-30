@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand
-import socket, time, threading, sys, pickle
-sys.path.append('../C:\\Users\\Yashwardhan\\Desktop\\Major Project Soham\\Donation_Application\\Donation_Application\\Donation_Portal')
-from Donation_Portal.models import Pool
+import socket, time, threading, pickle
+from ...models import Pool
 
 class Command(BaseCommand):
     help = 'Open a socket in Django'

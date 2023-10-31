@@ -20,6 +20,7 @@ def home(request):
     all_ngos = NGO.objects.all()
     return render(request, 'home.html',{'ngos': all_ngos}) #{'navbar':'home'}
     
+@login_required
 def ngo_registration(request):
     ngo_form = NGO_RegistrationForm()
     return render(request, 'NGO_registration.html', {'ngo_form':ngo_form})
@@ -111,12 +112,15 @@ class TransactionView(View):
         trans = Transaction.objects.filter(sender=request.user)
         return render(request,'transaction.html',{'trans':trans,'active':'btn-primary'})
  
-
+# @login_required
 def NGO_Registration(request):
-    if request.POST:
-        form = NGO_RegistrationForm(request.POST,request.FILES)
-        print(request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect(home)
-    return render(request,'NGO_registration.html',{'form':NGO_RegistrationForm})
+    if request.user.is_authenticated:
+        if request.POST:
+            form = NGO_RegistrationForm(request.POST,request.FILES)
+            print(request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect(home)
+        return render(request,'NGO_registration.html',{'form':NGO_RegistrationForm})
+    else:
+        return redirect("login/")

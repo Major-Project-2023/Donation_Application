@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from .models import(
     Customer,
     Transaction,
     Pool,
     Miner,
     NGO,
+    CustomUser,
 )
 # Register your models here.
 @admin.register(Customer)
@@ -26,3 +28,26 @@ class MinerModelAdmin(admin.ModelAdmin):
 @admin.register(NGO)
 class NGOModelAdmin(admin.ModelAdmin):
     list_display = ['id','name','registration_number','contact_person','email','phone_number','address','country','mission_statement','website','bank_account_number','social_media_links','registration_proof','created_at']
+
+
+class CustomUserAdmin(UserAdmin):
+    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'country')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+    search_fields = ('email', 'first_name', 'last_name')
+    ordering = ('email',)
+    filter_horizontal = ('groups', 'user_permissions')
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal Info', {'fields': ('first_name', 'last_name', 'country')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important Dates', {'fields': ('last_login', 'date_joined')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('first_name','last_name','country','email', 'password1', 'password2'),
+        }),
+    )
+
+# Register the custom user admin class with your CustomUser model
+admin.site.register(CustomUser, CustomUserAdmin)

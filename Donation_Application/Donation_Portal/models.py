@@ -60,43 +60,70 @@ class Pool(models.Model):
     payment_status = models.CharField(max_length=30)
     mode_of_payment = models.CharField(max_length=20)
 
+class Country(models.Model):
+    country_code = models.CharField(max_length=3)
+    country_name = models.CharField(max_length=30, unique=True)
+    
+    def __str__(self):
+        return self.country_name
+    
+class UserType(models.Model):
+    user_type = models.CharField(max_length=10, unique=True)
+    
+    def __str__(self):
+        return self.user_type
+
 # adding attributes to users model
-# from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
-# from django.db import models
-# from django.utils import timezone
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
+from django.db import models
+from django.utils import timezone
 
-# class CustomUserManager(BaseUserManager):
-#     def create_user(self, email, password=None, **extra_fields):
-#         if not email:
-#             raise ValueError("The Email field must be set")
-#         email = self.normalize_email(email)
-#         user = self.model(email=email, **extra_fields)
-#         user.set_password(password)
-#         user.save(using=self._db)
-#         return user
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("The Email field must be set")
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-#     def create_superuser(self, email, password=None, **extra_fields):
-#         extra_fields.setdefault('is_staff', True)
-#         extra_fields.setdefault('is_superuser', True)
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
 
-#         return self.create_user(email, password, **extra_fields)
+        return self.create_user(email, password, **extra_fields)
 
-# class CustomUser(AbstractBaseUser, PermissionsMixin):
-#     username = models.CharField(max_length=30, unique=True)
-#     email = models.EmailField(unique=True)
-#     first_name = models.CharField(max_length=30)
-#     last_name = models.CharField(max_length=30)
-#     is_active = models.BooleanField(default=True)
-#     is_staff = models.BooleanField(default=False)
-#     date_joined = models.DateTimeField(default=timezone.now)
-#     country = models.CharField(max_length=10)
-#     groups = models.ManyToManyField(Group, blank=True, related_name='custom_users')  # Specify the related_name here
-#     user_permissions = models.ManyToManyField(Permission, blank=True,related_name='custom_users_permissions')  # Specify the related_name here
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(max_length=30, unique=True)
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(default=timezone.now)
+    
+    country = models.ForeignKey(Country, on_delete=models.CASCADE,related_name='user_country', to_field="country_name")
+    user_type = models.ForeignKey(UserType, on_delete=models.CASCADE,related_name='type_user', to_field="user_type")
 
-#     objects = CustomUserManager()
+    groups = models.ManyToManyField(Group, blank=True, related_name='custom_users')  # Specify the related_name here
+    user_permissions = models.ManyToManyField(Permission, blank=True,related_name='custom_users_permissions')  # Specify the related_name here
 
-#     USERNAME_FIELD = 'email'
-#     REQUIRED_FIELDS = [username, email, country]
+    # choices = [
+    #     ('option1', 'Option 1'),
+    #     ('option2', 'Option 2'),
+    #     ('option3', 'Option 3'),
+    # ]
 
-#     def __str__(self):
-#         return self.username
+    # dropdown = forms.ChoiceField(
+    #     choices=choices,
+    #     widget=forms.Select(attrs={'class': 'custom-select-class'}),
+    # )
+
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = [username, email, country]
+
+    def __str__(self):
+        return self.username

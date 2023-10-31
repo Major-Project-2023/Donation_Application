@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect, get_object_or_404
 from django.views import View
-from .models import Customer, Transaction,NGO
+from .models import Customer, Transaction, NGO
 from .forms import SignupForm ,CustomerProfileForm,DonationForm,NGO_RegistrationForm
 from django.contrib import messages
 from django.db.models import Q

@@ -6,7 +6,9 @@ from .models import(
     Pool,
     Miner,
     NGO,
-    # CustomUser,
+    CustomUser,
+    Country,
+    UserType
 )
 # Register your models here.
 @admin.register(Customer)
@@ -29,25 +31,34 @@ class MinerModelAdmin(admin.ModelAdmin):
 class NGOModelAdmin(admin.ModelAdmin):
     list_display = ['id','name','registration_number','contact_person','email','phone_number','address','country','mission_statement','website','bank_account_number','social_media_links','registration_proof','created_at']
 
+@admin.register(Country)
+class CountryModelAdmin(admin.ModelAdmin):
+    list_display = ['country_code','country_name']
 
-# class CustomUserAdmin(UserAdmin):
-#     list_display = ('username','email', 'first_name', 'last_name', 'is_staff', 'country')
-#     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
-#     search_fields = ('username','email', 'first_name', 'last_name')
-#     ordering = ('username',)
-#     filter_horizontal = ('groups', 'user_permissions')
-#     fieldsets = (
-#         (None, {'fields': ('username', 'password')}),
-#         ('Personal Info', {'fields': ('first_name', 'last_name', 'country')}),
-#         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-#         ('Important Dates', {'fields': ('last_login', 'date_joined')}),
-#     )
-#     add_fieldsets = (
-#         (None, {
-#             'classes': ('wide',),
-#             'fields': ('username','first_name','last_name','country','email', 'password1', 'password2'),
-#         }),
-#     )
+@admin.register(UserType)
+class UserTypeModelAdmin(admin.ModelAdmin):
+    list_display = ['user_type']
 
-# # Register the custom user admin class with your CustomUser model
-# admin.site.register(CustomUser, CustomUserAdmin)
+
+class CustomUserAdmin(UserAdmin):
+    list_display = ('username','email', 'first_name', 'last_name', 'is_staff', 'country')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+    search_fields = ('username','email', 'first_name', 'last_name')
+    ordering = ('username',)
+    filter_horizontal = ('groups', 'user_permissions')
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        ('Personal Info', {'fields': ('first_name', 'last_name', 'country', 'user_type')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important Dates', {'fields': ('last_login', 'date_joined')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username','first_name','last_name','country',
+                       'user_type' ,'email', 'password1', 'password2'),
+        }),
+    )
+
+# Register the custom user admin class with your CustomUser model
+admin.site.register(CustomUser, CustomUserAdmin)

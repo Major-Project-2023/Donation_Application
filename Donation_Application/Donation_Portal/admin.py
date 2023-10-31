@@ -31,13 +31,13 @@ class NGOModelAdmin(admin.ModelAdmin):
 
 
 class CustomUserAdmin(UserAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'country')
+    list_display = ('username','email', 'first_name', 'last_name', 'is_staff', 'country')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
-    search_fields = ('email', 'first_name', 'last_name')
-    ordering = ('email',)
+    search_fields = ('username','email', 'first_name', 'last_name')
+    ordering = ('username',)
     filter_horizontal = ('groups', 'user_permissions')
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('username', 'password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name', 'country')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login', 'date_joined')}),
@@ -45,7 +45,7 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('first_name','last_name','country','email', 'password1', 'password2'),
+            'fields': ('username','first_name','last_name','country','email', 'password1', 'password2'),
         }),
     )
 

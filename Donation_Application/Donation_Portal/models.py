@@ -12,9 +12,9 @@ class Customer(models.Model):
     def __str__(self):
         return str(self.id)
     
-class Miner(models.Model):
-    ip_address = models.CharField(max_length=15)
-    country = models.CharField(max_length=20)
+# class Miner(models.Model):
+#     ip_address = models.CharField(max_length=15)
+#     country = models.CharField(max_length=20)
 
 class NGO(models.Model):
     name = models.CharField(max_length=255)

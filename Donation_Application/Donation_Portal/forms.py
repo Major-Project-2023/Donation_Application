@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm, Usern
 from django.contrib.auth.models import User
 from django.utils.translation import gettext,gettext_lazy as _
 from django.contrib.auth import password_validation
-from .models import Customer,NGO
+from .models import Customer,NGO,Country,UserType
 from paypal.standard.forms import PayPalPaymentsForm
 
 # class SignupForm(UserCreationForm):
@@ -21,9 +21,21 @@ class SignupForm(UserCreationForm):
     password2 = forms.CharField(label='Confirm Password (again)',widget=forms.PasswordInput(attrs={'class':'form-control'}))
     email = forms.CharField(required=True,widget=forms.EmailInput(attrs={'class':'form-control'}))
     # country = forms.CharField(requited=True,widget=forms.) 
+    countries = Country.objects.all()
+    country = forms.ModelChoiceField(
+        queryset=countries,
+        empty_label='Select a country',  # Optional: Add an empty label
+        widget=forms.Select(attrs={'class': 'custom-select-class'}),
+    )
+    user_types = UserType.objects.all()
+    user_type = forms.ModelChoiceField(
+        queryset=user_types,
+        empty_label='User type',  # Optional: Add an empty label
+        widget=forms.Select(attrs={'class': 'custom-select-class'}),
+    )
     class Meta:
         model=User
-        fields = ['username','email','password1','password2']
+        fields = ['username','user_type','email','country','password1','password2']
         labels = {'email':'Email'}
         widgets = {'username':forms.TextInput(attrs={'class':'form-control'})}
 

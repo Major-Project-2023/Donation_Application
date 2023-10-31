@@ -4,7 +4,7 @@ from .models import(
     Customer,
     Transaction,
     Pool,
-    Miner,
+    # Miner,
     NGO,
     CustomUser,
     Country,
@@ -23,9 +23,9 @@ class TransactionModelAdmin(admin.ModelAdmin):
 class PoolModelAdmin(admin.ModelAdmin):
     list_display = ['id','sender','receiver','sender_paypal_email','receiver_paypal_email','payment_status','date','amount','currency','mode_of_payment']
 
-@admin.register(Miner)
-class MinerModelAdmin(admin.ModelAdmin):
-    list_display = ['id','ip_address','country']
+# @admin.register(Miner)
+# class MinerModelAdmin(admin.ModelAdmin):
+#     list_display = ['id','ip_address','country']
 
 @admin.register(NGO)
 class NGOModelAdmin(admin.ModelAdmin):
@@ -39,9 +39,8 @@ class CountryModelAdmin(admin.ModelAdmin):
 class UserTypeModelAdmin(admin.ModelAdmin):
     list_display = ['user_type']
 
-
 class CustomUserAdmin(UserAdmin):
-    list_display = ('username','email', 'first_name', 'last_name', 'is_staff', 'country')
+    list_display = ('username','email', 'first_name', 'last_name', 'is_staff', 'country', 'user_type')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('username','email', 'first_name', 'last_name')
     ordering = ('username',)
@@ -55,7 +54,7 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username','first_name','last_name','country',
+            'fields': ('username','first_name','last_name','country','user_type',
                        'user_type' ,'email', 'password1', 'password2'),
         }),
     )

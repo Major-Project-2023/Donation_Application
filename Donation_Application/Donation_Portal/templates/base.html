@@ -16,29 +16,56 @@
 </head>
 <body>
 
-
   <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <ul class="navbar-nav mr-auto ml-5">
     <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/">Home</a></li>
     <!-- <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="/portal">Portal</a></li> -->
-    <a  href="{% url 'NGO_Registration' %}" class="btn btn-warning">NGO Registration</a>
+    <!-- <a  href="{% url 'NGO_Registration' %}" class="btn btn-warning">NGO Registration</a> -->
   </ul>
-  <img src="{% static 'images\logo.jpg' %}" alt="Your Logo" class="logo" align="center" width="60" hieght = "60">
+  <img src="{% static 'images\logo.jpg' %}" alt="Your Logo" class="logo" align ="center" width="60" hieght = "60">
   
   <ul class="navbar-nav mr-5 ml-auto">
     
-  {% if request.user.is_authenticated %}
+  {% if request.user.is_authenticated and  request.user.user_type|capfirst == 'NGO'%}
        <div class="dropdown">
         <button class="btn btn-warning dropdown-toggle ml-2 mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{request.user.user_type|capfirst}}
           {{request.user.username|capfirst}}
         </button>
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
           <!-- <a class="dropdown-item" href="{% url 'profile' %}">Profile</a> -->
+          <a class="dropdown-item" href="{% url 'NGO_Registration' %}">NGO Registration</a>
           <a class="dropdown-item" href="{% url 'transaction' %}">Transactions</a>
           <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+          <!-- <a class="dropdown-item" href="#">TEMP</a> -->
+          <!-- {% if request.user.user_type == 'NGO' %}
+            <a class="dropdown-item" href="#">NGO</a>
+          {% endif %}
+          {% if request.user.user_type|capfirst == 'DONOR' %}
+            <a class="dropdown-item" href="#">Donor</a>
+          {% endif %} -->
         </div>
       </div>
+  {% elif request.user.is_authenticated and  request.user.user_type|capfirst == 'Donor'%}
+      <div class="dropdown">
+       <button class="btn btn-warning dropdown-toggle ml-2 mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         {{request.user.user_type|capfirst}}
+         {{request.user.username|capfirst}}
+       </button>
+       <div class="dropdown-menu" aria-labelledby="profileDropdown">
+         <!-- <a class="dropdown-item" href="{% url 'profile' %}">Profile</a> -->
+         <a class="dropdown-item" href="{% url 'transaction' %}">Transactions</a>
+         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+         <!-- <a class="dropdown-item" href="#">TEMP</a> -->
+         <!-- {% if request.user.user_type == 'NGO' %}
+           <a class="dropdown-item" href="#">NGO</a>
+         {% endif %}
+         {% if request.user.user_type|capfirst == 'DONOR' %}
+           <a class="dropdown-item" href="#">Donor</a>
+         {% endif %} -->
+       </div>
+     </div>
   {% else %}
      <li class="nav-item mx-2 ml-2 mr-2">
       <a href="{% url 'login' %}" class="btn btn-secondary ml-2 mr-2">Login</a>

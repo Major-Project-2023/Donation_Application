@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm, Usern
 from django.contrib.auth.models import User
 from django.utils.translation import gettext,gettext_lazy as _
 from django.contrib.auth import password_validation
-from .models import Customer,NGO,Country,UserType
+from .models import Customer,NGO,Country,UserType,CustomUser
 from paypal.standard.forms import PayPalPaymentsForm
 
 # class SignupForm(UserCreationForm):
@@ -34,7 +34,7 @@ class SignupForm(UserCreationForm):
         widget=forms.Select(attrs={'class': 'custom-select-class'}),
     )
     class Meta:
-        model=User
+        model=CustomUser
         fields = ['username','user_type','email','country','password1','password2']
         labels = {'email':'Email'}
         widgets = {'username':forms.TextInput(attrs={'class':'form-control'})}

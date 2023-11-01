@@ -93,7 +93,7 @@ def successful(request):
 def cancelled(request):
     return render(request,'cancelled.html')
 
-
+# Signup
 class SignupView(View):
     def get(self,request):
         form = SignupForm()
@@ -104,6 +104,14 @@ class SignupView(View):
             messages.success(request,'Congratulations!! Registered Successfully')
             form.save()
         return render(request,'signup.html',{'form':form})
+    
+# login
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'  # Provide the template name you want to use for the login page
+    success_url = reverse_lazy('')  # Set the URL to redirect to after successful login
 
 
 @method_decorator(login_required,name='dispatch')

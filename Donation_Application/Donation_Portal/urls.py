@@ -15,8 +15,9 @@ urlpatterns = [
     path('successful/',views.successful,name='successful'),
     path('cancelled/',views.cancelled,name='cancelled'),
 
-    path('login/',auth_views.LoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
-    path('NGO_Registration/login/',auth_views.LoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
+    # path('login/',auth_views.LoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
+    # path('NGO_Registration/login/',auth_views.LoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
+    path('login/',views.CustomLoginView.as_view(template_name='login.html',authentication_form=LoginForm),name='login'),
 
     # added to resolve unexpected redirect to this path after login 
     path('accounts/profile/', views.home,name='home'),

@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.conf import settings
 # Create your models here.
 class Customer(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     phone = models.IntegerField()
     address = models.CharField(max_length=50)
     country = models.CharField(max_length=20)
@@ -11,10 +11,6 @@ class Customer(models.Model):
     ifsc_code = models.CharField(max_length=11)
     def __str__(self):
         return str(self.id)
-    
-# class Miner(models.Model):
-#     ip_address = models.CharField(max_length=15)
-#     country = models.CharField(max_length=20)
 
 class NGO(models.Model):
     name = models.CharField(max_length=255)
@@ -37,8 +33,8 @@ class NGO(models.Model):
         return self.name
     
 class Transaction(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receiver')
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sender')
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='receiver')
     # receiver = models.CharField(max_length=30)
     sender_paypal_email = models.EmailField()
     receiver_paypal_email = models.EmailField()
@@ -49,8 +45,8 @@ class Transaction(models.Model):
     mode_of_payment = models.CharField(max_length=20)
 
 class Pool(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pool_sender')
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pool_receiver')
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='pool_sender')
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='pool_receiver')
     # receiver = models.CharField(max_length=30)
     sender_paypal_email = models.EmailField()
     receiver_paypal_email = models.EmailField()

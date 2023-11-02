@@ -45,12 +45,14 @@ class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = Customer
         # fields = '__all__'
-        fields = ['phone','address','country','ac_number', 'ifsc_code']
+        fields = ['phone','address','country']
+        # 'ac_number', 'ifsc_code'
         widgets = {'phone':forms.NumberInput(attrs={'class':'form-control'}),
         'address':forms.TextInput(attrs={'class':'form-control'}),
         'country':forms.TextInput(attrs={'class':'form-control'}),
-        'ac_number':forms.NumberInput(attrs={'class':'form-control'}),
-        'ifsc_code':forms.TextInput(attrs={'class':'form-control'})}
+        # 'ac_number':forms.NumberInput(attrs={'class':'form-control'}),
+        # 'ifsc_code':forms.TextInput(attrs={'class':'form-control'})
+        }
 
 class NGO_RegistrationForm(forms.ModelForm):
     # name=forms.TextInput(attrs={'class':'form-control'})

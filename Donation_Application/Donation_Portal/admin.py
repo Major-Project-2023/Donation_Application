@@ -13,7 +13,8 @@ from .models import(
 # Register your models here.
 @admin.register(Customer)
 class CustomerModelAdmin(admin.ModelAdmin):
-    list_display = ['id','user','phone','address','country','ac_number','ifsc_code']
+    list_display = ['id','user','phone','address','country']
+    # 'ac_number','ifsc_code'
 
 @admin.register(Transaction)
 class TransactionModelAdmin(admin.ModelAdmin):
@@ -54,7 +55,7 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username','first_name','last_name','country','user_type',
+            'fields': ('username','first_name','last_name','country',
                        'user_type' ,'email', 'password1', 'password2'),
         }),
     )

@@ -40,9 +40,10 @@ class ProfileView(View):
             phone = form.cleaned_data['phone']
             address = form.cleaned_data['address']
             country = form.cleaned_data['country']
-            ac_number = form.cleaned_data['ac_number']
-            ifsc_code = form.cleaned_data['ifsc_code']
-            reg = Customer(user=user,phone=phone,address=address,country=country,ac_number=ac_number,ifsc_code=ifsc_code)
+            # ac_number = form.cleaned_data['ac_number']
+            # ifsc_code = form.cleaned_data['ifsc_code']
+            reg = Customer(user=user,phone=phone,address=address,country=country)
+            # ,ac_number=ac_number,ifsc_code=ifsc_code
             reg.save()
             messages.success(request,'Congratulations!! ProfileUpdated Successfully')
             return render(request,'profile.html',{'form':form,'proff':proff,'active':'btn-primary'})

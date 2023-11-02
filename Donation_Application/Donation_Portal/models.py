@@ -2,13 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 # Create your models here.
+
+class Country(models.Model):
+    country_code = models.CharField(max_length=3)
+    country_name = models.CharField(max_length=30, unique=True)
+    
+    def __str__(self):
+        return self.country_name
+    
+class UserType(models.Model):
+    user_type = models.CharField(max_length=10, unique=True)
+    
+    def __str__(self):
+        return self.user_type
+
 class Customer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     phone = models.IntegerField()
     address = models.CharField(max_length=50)
-    country = models.CharField(max_length=20)
-    ac_number = models.IntegerField(unique=True)
-    ifsc_code = models.CharField(max_length=11)
+    # country = models.CharField(max_length=20)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE,related_name='customer_country', to_field="country_name")
+    # ac_number = models.IntegerField(unique=True)
+    # ifsc_code = models.CharField(max_length=11)
     def __str__(self):
         return str(self.id)
 
@@ -19,7 +34,8 @@ class NGO(models.Model):
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)
     address = models.TextField()
-    country = models.CharField(max_length=50)
+    # country = models.CharField(max_length=50)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE,related_name='ngo_country', to_field="country_name")
     mission_statement = models.TextField()
     website = models.URLField(blank=True, null=True)
     bank_account_number = models.CharField(max_length=30)
@@ -56,19 +72,6 @@ class Pool(models.Model):
     payment_status = models.CharField(max_length=30)
     mode_of_payment = models.CharField(max_length=20)
 
-class Country(models.Model):
-    country_code = models.CharField(max_length=3)
-    country_name = models.CharField(max_length=30, unique=True)
-    
-    def __str__(self):
-        return self.country_name
-    
-class UserType(models.Model):
-    user_type = models.CharField(max_length=10, unique=True)
-    
-    def __str__(self):
-        return self.user_type
-
 # adding attributes to users model
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 from django.db import models
@@ -98,7 +101,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
-    
     country = models.ForeignKey(Country, on_delete=models.CASCADE,related_name='user_country', to_field="country_name")
     user_type = models.ForeignKey(UserType, on_delete=models.CASCADE,related_name='type_user', to_field="user_type")
 

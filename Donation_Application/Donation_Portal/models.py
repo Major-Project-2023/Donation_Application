@@ -50,8 +50,8 @@ class NGO(models.Model):
     
 class Transaction(models.Model):
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sender')
-    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='receiver')
-    # receiver = models.CharField(max_length=30)
+    # receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='receiver')
+    receiver = models.CharField(max_length=30)
     sender_paypal_email = models.EmailField()
     receiver_paypal_email = models.EmailField()
     date = models.DateTimeField(auto_now_add=True)

@@ -68,7 +68,8 @@ def portal(request):
             # Create PayPal dictionary
             paypal_dict = {
                 "cmd" : "_donations",
-                "business": settings.PAYPAL_RECEIVER_EMAIL[country],
+                # "business": settings.PAYPAL_RECEIVER_EMAIL[country],
+                "business":'donor1@donor.com',
                 "amount": amount,
                 "item_name": ngo.name,
                 "invoice": f"invoice-{ngo_id}",

@@ -49,8 +49,9 @@ class NGO(models.Model):
         return self.name
     
 class Transaction(models.Model):
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sender')
+    # sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sender')
     # receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='receiver')
+    sender = models.CharField(max_length=30)
     receiver = models.CharField(max_length=30)
     sender_paypal_email = models.EmailField()
     receiver_paypal_email = models.EmailField()
@@ -61,8 +62,9 @@ class Transaction(models.Model):
     mode_of_payment = models.CharField(max_length=20)
 
 class Pool(models.Model):
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='pool_sender')
+    # sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='pool_sender')
     # receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='pool_receiver')
+    sender = models.CharField(max_length=30)
     receiver = models.CharField(max_length=30)
     sender_paypal_email = models.EmailField()
     receiver_paypal_email = models.EmailField()

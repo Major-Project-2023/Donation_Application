@@ -13,8 +13,8 @@ def webhook(sender, **kwargs):
     print(ipn_obj)
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         transaction = Transaction.objects.create(
-            # sender=User.objects.get(username=ipn_obj.custom),
-            sender = settings.AUTH_USER_MODEL.objects.get(username=ipn_obj.custom),
+            sender=User.objects.get(username=ipn_obj.custom),
+            # sender = settings.AUTH_USER_MODEL.objects.get(username=ipn_obj.custom),
             receiver=ipn_obj.item_name,
             sender_paypal_email=ipn_obj.payer_email,
             receiver_paypal_email=ipn_obj.receiver_email,
@@ -31,8 +31,8 @@ def webhook(sender, **kwargs):
         transaction.save()
 
         pool = Pool.objects.create(
-            # sender=User.objects.get(username=ipn_obj.custom),
-            sender = settings.AUTH_USER_MODEL.objects.get(username=ipn_obj.custom),
+            sender=User.objects.get(username=ipn_obj.custom),
+            # sender = settings.AUTH_USER_MODEL.objects.get(username=ipn_obj.custom),
             receiver=ipn_obj.item_name,
             sender_paypal_email=ipn_obj.payer_email,
             receiver_paypal_email=ipn_obj.receiver_email,

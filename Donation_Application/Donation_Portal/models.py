@@ -38,7 +38,7 @@ class NGO(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE,related_name='ngo_country', to_field="country_name")
     mission_statement = models.TextField()
     website = models.URLField(blank=True, null=True)
-    bank_account_number = models.CharField(max_length=30)
+    # bank_account_number = models.CharField(max_length=30)
     # projects_description = models.TextField()
     social_media_links = models.URLField(blank=True, null=True)
     registration_proof = models.ImageField(upload_to='media/static/images/')

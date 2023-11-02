@@ -20,10 +20,6 @@ def home(request):
     all_ngos = NGO.objects.all()
     return render(request, 'home.html',{'ngos': all_ngos}) #{'navbar':'home'}
     
-@login_required
-def ngo_registration(request):
-    ngo_form = NGO_RegistrationForm()
-    return render(request, 'NGO_registration.html', {'ngo_form':ngo_form})
 
 @method_decorator(login_required,name='dispatch')
 class ProfileView(View):
@@ -133,3 +129,8 @@ def NGO_Registration(request):
         return render(request,'NGO_registration.html',{'form':NGO_RegistrationForm})
     else:
         return redirect("login/")
+    
+@login_required
+def ngo_registration(request):
+    ngo_form = NGO_RegistrationForm()
+    return render(request, 'NGO_registration.html', {'ngo_form':ngo_form})

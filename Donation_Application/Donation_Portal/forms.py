@@ -68,7 +68,8 @@ class NGO_RegistrationForm(forms.ModelForm):
     registration_proof=forms.ImageField(),
     class Meta:
         model = NGO
-        fields = ['name','registration_number','contact_person','email', 'phone_number','address','country','mission_statement','bank_account_number','website','registration_proof']
+        fields = ['name','registration_number','contact_person','email', 'phone_number','address','country','mission_statement','website','registration_proof']
+        # 'bank_account_number'
         widgets = {'name':forms.TextInput(attrs={'class':'form-control'}),
                    'registration_number':forms.TextInput(attrs={'class':'form-control'}),
                    'contact_person':forms.TextInput(attrs={'class':'form-control'}),
@@ -77,7 +78,7 @@ class NGO_RegistrationForm(forms.ModelForm):
                     'address':forms.TextInput(attrs={'class':'form-control'}),
                     'country':forms.TextInput(attrs={'class':'form-control'}),
                     'mission_statement':forms.Textarea(attrs={'class':'form-control'}),
-                    'bank_account_number':forms.TextInput(attrs={'class':'form-control'}),
+                    # 'bank_account_number':forms.TextInput(attrs={'class':'form-control'}),
                     'webite':forms.URLField(),
                     # 'registration_proof':forms.ImageField(attrs={'class':'form-control'})
                     }

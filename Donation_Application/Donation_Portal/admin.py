@@ -35,7 +35,7 @@ class NGOModelAdmin(admin.ModelAdmin):
 
 @admin.register(Country)
 class CountryModelAdmin(admin.ModelAdmin):
-    list_display = ['country_code','country_name']
+    list_display = ['country_code','country_name','country_account']
 
 @admin.register(UserType)
 class UserTypeModelAdmin(admin.ModelAdmin):

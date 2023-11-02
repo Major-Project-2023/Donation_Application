@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect, get_object_or_404
 from django.views import View
-from .models import Customer, Transaction, NGO
+from .models import Customer, Transaction, NGO, Country
 from .forms import SignupForm ,CustomerProfileForm,DonationForm,NGO_RegistrationForm
 from django.contrib import messages
 from django.db.models import Q
@@ -66,10 +66,17 @@ def portal(request):
         if form.is_valid():
             amount = form.cleaned_data['amount']
             # Create PayPal dictionary
+            # print(Country.objects.get(country_name = country))
+            country2 = Country.objects.get(country_name=country)
+            country_account = country2.country_account
+            print(country_account)
             paypal_dict = {
                 "cmd" : "_donations",
                 # "business": settings.PAYPAL_RECEIVER_EMAIL[country],
-                "business":'donor1@donor.com',
+                # "business":'donor1@donor.com',
+                'business' : country_account,
+                # 'business':Country.objects.filter(country_name=country).country_account,
+                # proff = Customer.objects.filter(user=request.user)
                 "amount": amount,
                 "item_name": ngo.name,
                 "invoice": f"invoice-{ngo_id}",
@@ -135,3 +142,13 @@ def NGO_Registration(request):
 def ngo_registration(request):
     ngo_form = NGO_RegistrationForm()
     return render(request, 'NGO_registration.html', {'ngo_form':ngo_form})
+
+
+
+
+# PAYPAL_RECEIVER_EMAIL = {
+#     'India' : 'ngo_india@ngo.com',
+#     'China' : 'ngo_china@ngo.com',
+#     'USA' : 'ngo_usa@ngo.com',
+#     'Honkong':'ngo_honkong@ngo.com'
+# }#where cash is paid into

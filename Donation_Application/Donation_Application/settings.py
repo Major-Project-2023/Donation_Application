@@ -131,6 +131,8 @@ PAYPAL_RECEIVER_EMAIL = {
     'USA' : 'ngo_usa@ngo.com',
     'Honkong':'ngo_honkong@ngo.com'
 }#where cash is paid into
+
+
 PAYPAL_TEST = True
 
 # Default primary key field type

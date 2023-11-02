@@ -6,7 +6,7 @@ from django.conf import settings
 class Country(models.Model):
     country_code = models.CharField(max_length=3)
     country_name = models.CharField(max_length=30, unique=True)
-    
+    country_account = models.CharField(max_length=50, default='null')
     def __str__(self):
         return self.country_name
     

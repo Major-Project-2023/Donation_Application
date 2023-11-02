@@ -10,6 +10,7 @@ from django.conf import settings
 @receiver(valid_ipn_received)
 def webhook(sender, **kwargs):
     ipn_obj = sender
+    print(ipn_obj)
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         transaction = Transaction.objects.create(
             # sender=User.objects.get(username=ipn_obj.custom),

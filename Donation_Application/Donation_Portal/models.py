@@ -29,9 +29,9 @@ class Customer(models.Model):
         return str(self.id)
 
 class NGO(models.Model):
-    name = models.CharField(max_length=255)
-    registration_number = models.CharField(max_length=50)
-    contact_person = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
+    # registration_number = models.CharField(max_length=50)
+    contact_person = models.CharField(max_length=50)
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)
     address = models.TextField()
@@ -41,7 +41,7 @@ class NGO(models.Model):
     website = models.URLField(blank=True, null=True)
     # bank_account_number = models.CharField(max_length=30)
     # projects_description = models.TextField()
-    social_media_links = models.URLField(blank=True, null=True)
+    # social_media_links = models.URLField(blank=True, null=True)
     registration_proof = models.ImageField(upload_to='media/static/images/')
     # accepted_terms = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

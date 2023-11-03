@@ -6,15 +6,27 @@ from django.contrib.auth import password_validation
 from .models import Customer,NGO,Country,UserType,CustomUser
 from paypal.standard.forms import PayPalPaymentsForm
 
-# class SignupForm(UserCreationForm):
-#     password1 = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
-#     password2 = forms.CharField(label='Confirm Password (again)',widget=forms.PasswordInput(attrs={'class':'form-control'}))
-#     email = forms.CharField(required=True,widget=forms.EmailInput(attrs={'class':'form-control'}))
-#     class Meta:
-#         model=User
-#         fields = ['username','email','password1','password2']
-#         labels = {'email':'Email'}
-#         widgets = {'username':forms.TextInput(attrs={'class':'form-control'})}
+class NGO_RegistrationForm(forms.ModelForm):
+    name = forms.CharField(label='NGO Name',widget=forms.TextInput(attrs={'class':'form-control'}))
+    contact_person = forms.CharField(label='NGO Name',widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.CharField(label='Email',required=True,widget=forms.EmailInput(attrs={'class':'form-control'}))
+    phone_number = forms.IntegerField(label='Phone Number', required=True, widget=forms.NumberInput(attrs={'class':'form-control'}))
+    address = forms.Textarea()
+    countries = Country.objects.all()
+    country = forms.ModelChoiceField(
+        queryset=countries,
+        empty_label='Select a country',  # Optional: Add an empty label
+        widget=forms.Select(attrs={'class': 'custom-select-class'}),
+    )
+    mission_statement = forms.Textarea()
+    website = forms.CharField(label='NGO Website',widget=forms.TextInput(attrs={'class':'form-control'}))    
+    registration_proof = forms.ImageField()
+    class Meta:
+        model=NGO
+        fields = ['contact_person','email','phone_number','address','country','mission_statement','website','registration_proof']
+        # 'name',
+        # labels = {'email':'Email'}
+        # widgets = {'name':forms.TextInput(attrs={'class':'form-control'})}
 
 class SignupForm(UserCreationForm):
     password1 = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
@@ -54,34 +66,33 @@ class CustomerProfileForm(forms.ModelForm):
         # 'ifsc_code':forms.TextInput(attrs={'class':'form-control'})
         }
 
-class NGO_RegistrationForm(forms.ModelForm):
-    # name=forms.TextInput(attrs={'class':'form-control'})
-    # registration_number=forms.TextInput(attrs={'class':'form-control'})
-    # contact_person=forms.TextInput(attrs={'class':'form-control'})
-    # email=forms.EmailInput(attrs={'class':'form-control'})
-    # phone_number=forms.NumberInput(attrs={'class':'form-control'})
-    # address=forms.TextInput(attrs={'class':'form-control'})
-    # country=forms.TextInput(attrs={'class':'form-control'})
-    # mission_statement=forms.Textarea(attrs={'class':'form-control'})
-    # bank_account_number=forms.TextInput(attrs={'class':'form-control'})
-    # webite=forms.URLField(),
-    registration_proof=forms.ImageField(),
-    class Meta:
-        model = NGO
-        fields = ['name','registration_number','contact_person','email', 'phone_number','address','country','mission_statement','website','registration_proof']
-        # 'bank_account_number'
-        widgets = {'name':forms.TextInput(attrs={'class':'form-control'}),
-                   'registration_number':forms.TextInput(attrs={'class':'form-control'}),
-                   'contact_person':forms.TextInput(attrs={'class':'form-control'}),
-                   'email':forms.EmailInput(attrs={'class':'form-control'}),
-                    'phone_number':forms.NumberInput(attrs={'class':'form-control'}),
-                    'address':forms.TextInput(attrs={'class':'form-control'}),
-                    'country':forms.TextInput(attrs={'class':'form-control'}),
-                    'mission_statement':forms.Textarea(attrs={'class':'form-control'}),
-                    # 'bank_account_number':forms.TextInput(attrs={'class':'form-control'}),
-                    'webite':forms.URLField(),
-                    # 'registration_proof':forms.ImageField(attrs={'class':'form-control'})
-                    }
+# class NGO_RegistrationForm(forms.ModelForm):
+#     # name=forms.TextInput(attrs={'class':'form-control'})
+#     # registration_number=forms.TextInput(attrs={'class':'form-control'})
+#     # contact_person=forms.TextInput(attrs={'class':'form-control'})
+#     # email=forms.EmailInput(attrs={'class':'form-control'})
+#     # phone_number=forms.NumberInput(attrs={'class':'form-control'})
+#     # address=forms.TextInput(attrs={'class':'form-control'})
+#     # country=forms.TextInput(attrs={'class':'form-control'})
+#     # mission_statement=forms.Textarea(attrs={'class':'form-control'})
+#     # bank_account_number=forms.TextInput(attrs={'class':'form-control'})
+#     # webite=forms.URLField(),
+#     registration_proof=forms.ImageField(),
+#     class Meta:
+#         model = NGO
+#         fields = ['name','contact_person','email', 'phone_number','address','country','mission_statement','website','registration_proof']
+#         # 'bank_account_number','registration_number',
+#         widgets = {'name':forms.TextInput(attrs={'class':'form-control'}),
+#                    'contact_person':forms.TextInput(attrs={'class':'form-control'}),
+#                    'email':forms.EmailInput(attrs={'class':'form-control'}),
+#                     'phone_number':forms.NumberInput(attrs={'class':'form-control'}),
+#                     'address':forms.TextInput(attrs={'class':'form-control'}),
+#                     'country':forms.TextInput(attrs={'class':'form-control'}),
+#                     'mission_statement':forms.Textarea(attrs={'class':'form-control'}),
+#                     # 'bank_account_number':forms.TextInput(attrs={'class':'form-control'}),'registration_number':forms.TextInput(attrs={'class':'form-control'}),
+#                     'webite':forms.URLField(),
+#                     # 'registration_proof':forms.ImageField(attrs={'class':'form-control'})
+#                     }
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True,'class':'form-control'}))

@@ -30,7 +30,7 @@ DEBUG = True
 # Doing this allows us to be able to make requests from any host ip
 # fro phone etc
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://f488-59-184-167-171.ngrok-free.app']
+# CSRF_TRUSTED_ORIGINS = ['']
 
 # Application definition
 

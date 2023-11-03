@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 import socket, time, threading, pickle
 from ...models import Pool
 from django.conf import settings
-from Donation_Portal.models import CustomUser,NGO
+from Donation_Portal.models import CustomUser,NGO,Country
 
 class Command(BaseCommand):
     help = 'Open a socket in Django'
@@ -38,12 +38,19 @@ class Command(BaseCommand):
                 curr.append(pl.amount)
                 curr.append(pl.sender)
                 curr.append(pl.receiver)
+                
                 user_sender = CustomUser.objects.get(username=pl.sender)
                 sender_country = user_sender.country
                 curr.append(sender_country)
+                country = Country.objects.get(country_name=sender_country)
+                curr.append(country.country_code)
+                
                 user_receiver = NGO.objects.get(name=pl.receiver)
                 receiver_country = user_receiver.country
                 curr.append(receiver_country)
+                country = Country.objects.get(country_name=receiver_country)
+                curr.append(country.country_code)
+                
                 # curr.append(settings.AUTH_USER_MODEL.get(username=pl.sender))
                 # curr.append(settings.AUTH_USER_MODEL.get(username=pl.receiver))
                 obj.append(curr)                    

@@ -5,7 +5,7 @@
 <div class = "text-justify text-dark ml-0 mr-0">
     {% for n in ngos  %}
         <div class="card w-100 h-10 flex-row mt-3">
-            <img src="{{n.registration_proof.url}}" class="img-fluid w-50"  alt="...">
+            <img src="{{n.registration_proof.url}}" class="img-fluid w-50" style="height:360px; width: 340px;" alt="...">
             <div class="card-body" style="background-color: #bfbfbf;">
                 <h5 class="card-title"><strong>{{n.name}}</strong></h5>
                 <p class="h6">REGISTRATION NUMBER: <u>{{n.registration_number}}</u></p>
@@ -16,9 +16,6 @@
                 <p class="h6">COUNTRY:             <u>{{n.country}}</u></p>
                 <p class="h6">MISSION:             <u>{{n.mission_statement}}</u></p>
                 <p class="h6 ">WEBSITE:             <a href="#" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{n.website}}</a></p>
-                <p class="h6">SOCIAL MEDIA LINKS:  <u>{{n.social_media_links}}</u></p>
-                {% comment %} <p class="h6">REGISTRATION PROOF: {{n.registration_proof}}</p> {% endcomment %}
-                <p class="h6">ACCEPTING FROM:      <u>{{n.created_at}}</u></p>
                 <a href="{% url 'portal' %}?ngo_id={{ n.id }}&country={{ n.country }}" class="btn btn-outline-success btn-lg">DONATE</a>
             </div>
         </div>

@@ -29,7 +29,7 @@ DEBUG = True
 
 # Doing this allows us to be able to make requests from any host ip
 # fro phone etc
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['']
 # CSRF_TRUSTED_ORIGINS = ['']
 
 # Application definition

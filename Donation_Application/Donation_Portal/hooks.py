@@ -15,8 +15,8 @@ def webhook(sender, **kwargs):
         transaction = Transaction.objects.create(
             # sender=User.objects.get(username=ipn_obj.custom),
             # sender = settings.AUTH_USER_MODEL.objects.get(username=ipn_obj.custom),
-            # sender = ipn_obj.custom,
-            # receiver=ipn_obj.item_name,
+            sender = ipn_obj.custom,
+            receiver=ipn_obj.item_name,
             sender_paypal_email=ipn_obj.payer_email,
             receiver_paypal_email=ipn_obj.receiver_email,
             date=ipn_obj.payment_date,

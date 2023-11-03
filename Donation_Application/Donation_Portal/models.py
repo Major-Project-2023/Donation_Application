@@ -12,8 +12,7 @@ class Country(models.Model):
         return self.country_name
     
 class UserType(models.Model):
-    user_type = models.CharField(max_length=10, unique=True)
-    
+    user_type = models.CharField(max_length=10, unique=True)    
     def __str__(self):
         return self.user_type
 

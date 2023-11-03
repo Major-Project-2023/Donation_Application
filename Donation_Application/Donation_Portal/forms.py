@@ -66,34 +66,6 @@ class CustomerProfileForm(forms.ModelForm):
         # 'ifsc_code':forms.TextInput(attrs={'class':'form-control'})
         }
 
-# class NGO_RegistrationForm(forms.ModelForm):
-#     # name=forms.TextInput(attrs={'class':'form-control'})
-#     # registration_number=forms.TextInput(attrs={'class':'form-control'})
-#     # contact_person=forms.TextInput(attrs={'class':'form-control'})
-#     # email=forms.EmailInput(attrs={'class':'form-control'})
-#     # phone_number=forms.NumberInput(attrs={'class':'form-control'})
-#     # address=forms.TextInput(attrs={'class':'form-control'})
-#     # country=forms.TextInput(attrs={'class':'form-control'})
-#     # mission_statement=forms.Textarea(attrs={'class':'form-control'})
-#     # bank_account_number=forms.TextInput(attrs={'class':'form-control'})
-#     # webite=forms.URLField(),
-#     registration_proof=forms.ImageField(),
-#     class Meta:
-#         model = NGO
-#         fields = ['name','contact_person','email', 'phone_number','address','country','mission_statement','website','registration_proof']
-#         # 'bank_account_number','registration_number',
-#         widgets = {'name':forms.TextInput(attrs={'class':'form-control'}),
-#                    'contact_person':forms.TextInput(attrs={'class':'form-control'}),
-#                    'email':forms.EmailInput(attrs={'class':'form-control'}),
-#                     'phone_number':forms.NumberInput(attrs={'class':'form-control'}),
-#                     'address':forms.TextInput(attrs={'class':'form-control'}),
-#                     'country':forms.TextInput(attrs={'class':'form-control'}),
-#                     'mission_statement':forms.Textarea(attrs={'class':'form-control'}),
-#                     # 'bank_account_number':forms.TextInput(attrs={'class':'form-control'}),'registration_number':forms.TextInput(attrs={'class':'form-control'}),
-#                     'webite':forms.URLField(),
-#                     # 'registration_proof':forms.ImageField(attrs={'class':'form-control'})
-#                     }
-
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True,'class':'form-control'}))
     password = forms.CharField(label=_("Password"),strip=False,widget=forms.PasswordInput(attrs={'autocomplete':'current-password','class':'form-control'}))

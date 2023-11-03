@@ -44,7 +44,7 @@ class NGO(models.Model):
     # social_media_links = models.URLField(blank=True, null=True)
     registration_proof = models.ImageField(upload_to='media/static/images/')
     # accepted_terms = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    # created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name

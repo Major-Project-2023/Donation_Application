@@ -33,24 +33,25 @@ class Command(BaseCommand):
             obj = []
             for pl in pool:
                 curr = []
-                curr.append(pl.sender_paypal_email)
-                curr.append(pl.receiver_paypal_email)
-                curr.append(pl.amount)
-                curr.append(pl.sender)
-                curr.append(pl.receiver)
+                # curr.append(pl.sender_paypal_email)
+                # curr.append(pl.receiver_paypal_email)
+                # curr.append(pl.sender)
+                # curr.append(pl.receiver)
                 
                 user_sender = CustomUser.objects.get(username=pl.sender)
                 sender_country = user_sender.country
-                curr.append(sender_country)
+                # curr.append(sender_country)
                 country = Country.objects.get(country_name=sender_country)
                 curr.append(country.country_code)
                 
                 user_receiver = NGO.objects.get(name=pl.receiver)
                 receiver_country = user_receiver.country
-                curr.append(receiver_country)
+                # curr.append(receiver_country)
                 country = Country.objects.get(country_name=receiver_country)
                 curr.append(country.country_code)
                 
+                curr.append(pl.amount)
+
                 # curr.append(settings.AUTH_USER_MODEL.get(username=pl.sender))
                 # curr.append(settings.AUTH_USER_MODEL.get(username=pl.receiver))
                 obj.append(curr)                    

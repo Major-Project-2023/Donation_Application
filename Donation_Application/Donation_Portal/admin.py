@@ -30,8 +30,8 @@ class PoolModelAdmin(admin.ModelAdmin):
 
 @admin.register(NGO)
 class NGOModelAdmin(admin.ModelAdmin):
-    list_display = ['id','name','contact_person','email','phone_number','address','country','mission_statement','website','registration_proof','created_at']
-    # 'bank_account_number','registration_number','social_media_links',
+    list_display = ['id','name','contact_person','email','phone_number','address','country','mission_statement','website','registration_proof']
+    # 'bank_account_number','registration_number','social_media_links',,'created_at'
 
 @admin.register(Country)
 class CountryModelAdmin(admin.ModelAdmin):

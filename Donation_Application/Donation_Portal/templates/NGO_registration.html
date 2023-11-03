@@ -2,32 +2,31 @@
 {% load static %}
 {% block title %}NGO Registration{% endblock title %}
 {% block content %}
-<div class=""> 
-  <div class="p-3 w-50 mr-4 ml-4">
-    <form method="POST" action="{% url 'NGO_Registration' %}" enctype="multipart/form-data">
-      {% csrf_token %}
-      {% if messages %}
-        {% for message in messages %}
-          <p {% if message.tags %} class ="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
-        {% endfor %}
-      {% endif %}
-      <div class="h5 text-success">
-        Enter the details to register your NGO
-      </div>
-      {% for fm in form%}
-        <div>
-          <div class="form-group text-dark">
-            {{fm.label_tag}} {{fm}}
-          </div> 
-          <small class="text-danger">{{fm.errors|striptags}}</small><br>
-        </div>
-      {% endfor %}
-      <!-- {{form}} -->
-      <!-- <button>submit</button> -->
-      <div class="">
-        <input type="submit" class="btn btn-outline-success btn-lg" value="SUBMIT">
-      </div>
-    </form>
-  </div>
+<div class="container pb-3 pt-3">
+     <div class="col-sm-6 offset-sm-3">
+         <form action="" method="post" novalidate class="shadow p-5">
+            {% csrf_token %}
+            {% if messages %}
+               {% for message in messages%}
+                  <p {% if message.tags %}class="alert alert-{{ message.tags }} mb-5"{% endif %}>{{message}}</p>
+               {% endfor%}
+               {% endif %}
+            {% for fm in form %}
+            <div class="form-group mb-3">
+               {{fm.label_tag}}{{fm}}<small class="text-danger">{{fm.errors|striptags}}</small>
+            </div>
+            {% endfor %}
+            <input type="submit" value="Submit" class="btn btn-warning">
+            <br>
+            <!-- <div class="text-center text-secondary fw-bold">
+                <small>Existing User ? <a href="/login/" class="text-danger">Login Now</a></small>
+            </div> -->
+            {% if form.non_fiels_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="alert alert-danger my-3">{{error}}</p>
+            {% endfor%}
+            {% endif %}
+         </form>
+   </div>
 </div>
 {% endblock content %}

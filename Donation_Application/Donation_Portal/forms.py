@@ -8,9 +8,9 @@ from paypal.standard.forms import PayPalPaymentsForm
 
 class NGO_RegistrationForm(forms.ModelForm):
     name = forms.CharField(label='NGO Name',widget=forms.TextInput(attrs={'class':'form-control'}))
-    contact_person = forms.CharField(label='NGO Name',widget=forms.TextInput(attrs={'class':'form-control'}))
-    email = forms.CharField(label='Email',required=True,widget=forms.EmailInput(attrs={'class':'form-control'}))
-    phone_number = forms.IntegerField(label='Phone Number', required=True, widget=forms.NumberInput(attrs={'class':'form-control'}))
+    contact_person = forms.CharField(label='Contact Person',widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.CharField(label='Email',widget=forms.EmailInput(attrs={'class':'form-control'}))
+    phone_number = forms.IntegerField(label='Phone Number',widget=forms.NumberInput(attrs={'class':'form-control'}))
     address = forms.Textarea()
     countries = Country.objects.all()
     country = forms.ModelChoiceField(
@@ -23,7 +23,7 @@ class NGO_RegistrationForm(forms.ModelForm):
     registration_proof = forms.ImageField()
     class Meta:
         model=NGO
-        fields = ['contact_person','email','phone_number','address','country','mission_statement','website','registration_proof']
+        fields = ['name','contact_person','email','phone_number','address','country','mission_statement','website','registration_proof']
         # 'name',
         # labels = {'email':'Email'}
         # widgets = {'name':forms.TextInput(attrs={'class':'form-control'})}

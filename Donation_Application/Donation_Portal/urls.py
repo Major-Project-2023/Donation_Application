@@ -9,7 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('NGO_Registration/',views.NGO_Registration,name='NGO_Registration'),
     
     path('portal/', views.portal, name = 'portal'),
     path('successful/',views.successful,name='successful'),
@@ -21,9 +20,12 @@ urlpatterns = [
 
     # added to resolve unexpected redirect to this path after login 
     path('accounts/profile/', views.home,name='home'),
+    # path('profile/', views.home,name='home'),
 
     path('signup/',views.SignupView.as_view(),name='signup'),
-    
+    # path('NGO_Registration/',views.NGO_Registration,name='NGO_Registration'),
+    path('NGP_Registration/',views.NGO_RegistrationView.as_view(),name="NGO_Registration"),
+
     path('profile/', views.ProfileView.as_view(), name='profile'),
 
     path('transaction/', views.TransactionView.as_view(), name='transaction'),
@@ -35,10 +37,10 @@ urlpatterns = [
     path('password-reset/confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='app/password_reset_confirm.html',form_class=MySetPasswordForm),name='password_reset_confirm'),
 
     path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),name='password_reset_done'),
-
+    ]
 # ngo registration
-    path('ngo_registration/',views.ngo_registration,name='ngo_registration'),
+#     path('ngo_registration/',views.ngo_registration,name='ngo_registration'),
 
-]
+# ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

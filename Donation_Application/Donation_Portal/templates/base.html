@@ -35,7 +35,11 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="profileDropdown">
           <!-- <a class="dropdown-item" href="{% url 'profile' %}">Profile</a> -->
-          <a class="dropdown-item" href="{% url 'NGO_Registration' %}">NGO Registration</a>
+          
+          <!-- I'VE needed to remove this-->
+          <!-- <a class="dropdown-item" href="{% url 'NGO_Registration' %}">NGO Registration</a> -->
+          
+          
           <a class="dropdown-item" href="{% url 'transaction' %}">Transactions</a>
           <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
           <!-- <a class="dropdown-item" href="#">TEMP</a> -->
@@ -74,7 +78,7 @@
       <a href="{% url 'signup' %}" class="btn btn-secondary ml-2 mr-2">Signup</a>
      </li>
   {% endif %}
-  <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="#">About Us</a></li>
+  <!-- <li class="nav-item active ml-2 mr-2"><a class="btn btn-secondary ml-2 mr-2" href="#">About Us</a></li> -->
   </ul>
 </nav>  
 <!-- Main Section -->

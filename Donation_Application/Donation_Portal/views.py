@@ -110,6 +110,17 @@ class SignupView(View):
             form.save()
         return render(request,'signup.html',{'form':form})
     
+class NGO_RegistrationView(View):
+    def get(self,request):
+        form = NGO_RegistrationForm()
+        return render(request,'NGO_registration.html',{'form':form})
+    def post(self,request):
+        form = NGO_RegistrationForm(request.POST)
+        if form.is_valid():
+            messages.success(request,'Congratulations!! NGO Registered Successfully')
+            form.save()
+        return render(request,'NGO_registration.html',{'form':form})
+    
 # login
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
@@ -125,23 +136,26 @@ class TransactionView(View):
         trans = Transaction.objects.filter(sender=request.user)
         return render(request,'transaction.html',{'trans':trans,'active':'btn-primary'})
  
+
+
+
 # @login_required
-def NGO_Registration(request):
-    if request.user.is_authenticated:
-        if request.POST:
-            form = NGO_RegistrationForm(request.POST,request.FILES)
-            print(request.FILES)
-            if form.is_valid():
-                form.save()
-                return redirect(home)
-        return render(request,'NGO_registration.html',{'form':NGO_RegistrationForm})
-    else:
-        return redirect("login/")
+# def NGO_Registration(request):
+#     if request.user.is_authenticated:
+#         if request.POST:
+#             form = NGO_RegistrationForm(request.POST,request.FILES)
+#             print(request.FILES)
+#             if form.is_valid():
+#                 form.save()
+#                 return redirect(home)
+#         return render(request,'NGO_registration.html',{'form':NGO_RegistrationForm})
+#     else:
+#         return redirect("login/")
     
-@login_required
-def ngo_registration(request):
-    ngo_form = NGO_RegistrationForm()
-    return render(request, 'NGO_registration.html', {'ngo_form':ngo_form})
+# @login_required
+# def ngo_registration(request):
+#     ngo_form = NGO_RegistrationForm()
+#     return render(request, 'NGO_registration.html', {'ngo_form':ngo_form})
 
 # ADD new ngo_registration_class
 

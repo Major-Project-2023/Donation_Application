@@ -1,6 +1,8 @@
 from django.core.management.base import BaseCommand
 import socket, time, threading, pickle
 from ...models import Pool
+from django.conf import settings
+from Donation_Portal.models import CustomUser
 
 class Command(BaseCommand):
     help = 'Open a socket in Django'
@@ -34,6 +36,16 @@ class Command(BaseCommand):
                 curr.append(pl.sender_paypal_email)
                 curr.append(pl.receiver_paypal_email)
                 curr.append(pl.amount)
+                curr.append(pl.sender)
+                curr.append(pl.receiver)
+                user_sender = CustomUser.objects.get(username=pl.sender)
+                sender_country = user_sender.country
+                curr.append(sender_country)
+                user_receiver = CustomUser.objects.get(username=pl.receiver)
+                receiver_country = user_receiver.country
+                curr.append(receiver_country)
+                # curr.append(settings.AUTH_USER_MODEL.get(username=pl.sender))
+                # curr.append(settings.AUTH_USER_MODEL.get(username=pl.receiver))
                 obj.append(curr)                    
             # Emptying the pool
             Pool.objects.all().delete() 

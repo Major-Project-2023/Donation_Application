@@ -143,7 +143,7 @@ def ngo_registration(request):
     ngo_form = NGO_RegistrationForm()
     return render(request, 'NGO_registration.html', {'ngo_form':ngo_form})
 
-
+# ADD new ngo_registration_class
 
 
 # PAYPAL_RECEIVER_EMAIL = {

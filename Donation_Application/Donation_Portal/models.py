@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+
 # Create your models here.
 
 class Country(models.Model):
@@ -108,17 +109,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     groups = models.ManyToManyField(Group, blank=True, related_name='custom_users')  # Specify the related_name here
     user_permissions = models.ManyToManyField(Permission, blank=True,related_name='custom_users_permissions')  # Specify the related_name here
-
-    # choices = [
-    #     ('option1', 'Option 1'),
-    #     ('option2', 'Option 2'),
-    #     ('option3', 'Option 3'),
-    # ]
-
-    # dropdown = forms.ChoiceField(
-    #     choices=choices,
-    #     widget=forms.Select(attrs={'class': 'custom-select-class'}),
-    # )
 
     objects = CustomUserManager()
 

@@ -41,7 +41,7 @@ class Command(BaseCommand):
                 user_sender = CustomUser.objects.get(username=pl.sender)
                 sender_country = user_sender.country
                 curr.append(sender_country)
-                user_receiver = NGO.objects.get(username=pl.receiver)
+                user_receiver = NGO.objects.get(name=pl.receiver)
                 receiver_country = user_receiver.country
                 curr.append(receiver_country)
                 # curr.append(settings.AUTH_USER_MODEL.get(username=pl.sender))
